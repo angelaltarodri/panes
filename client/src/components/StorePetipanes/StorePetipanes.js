@@ -32,7 +32,7 @@ export default function StorePetipanes() {
 
     if(pedidos[0][item.itemCode]){
       return <div className="StorePetipanes_cantidad">
-        <div className="StorePetipanes_cantidad_izq"> {item.itemName} tiene {pedidos[0][item.itemCode]} </div>
+        <div className="StorePetipanes_cantidad_izq"> {item.itemName} {pedidos[0][item.itemCode]} </div>
         <div className="StorePetipanes_cantidad_der" onClick={deleteItem}> x </div>
         </div>
     } else {
