@@ -1,0 +1,49 @@
+.StorePetipanes_pedir{
+    display:flex;
+    align-items: start;
+    justify-content:center;
+}
+.StorePetipanes_botones{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.StorePetipanes_backButton{
+    border: 1px solid black;
+    width: 50px;
+    margin: 5px;
+}
+.StorePetipanes_selector{
+    display:flex;
+    flex-direction: column;
+}
+.StorePetipanes_opciones{
+    border: 1px solid black;
+    width: 200px;
+    margin: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: start;
+}
+.StorePetipanes_cantidad{
+    margin:5px;
+    padding: 5px 10px 5px 10px;
+    display:flex;
+    box-sizing: border-box;
+    border-radius: 10px;
+    height:40px;
+}
+.StorePetipanes_cantidad div {
+    border: 1px solid black;
+    padding:5px;
+}
+.StorePetipanes_cantidad_izq{
+    border-right: 0px !important;
+    width: 220px;
+    text-align: start;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+.StorePetipanes_cantidad_der{
+    background-color: yellow;
+}

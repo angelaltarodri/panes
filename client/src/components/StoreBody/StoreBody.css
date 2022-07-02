@@ -1,0 +1,8 @@
+.StoreBody_cuadro{
+    border:1px solid black;
+    height:250px;
+    margin: 10px;
+}
+.StoreBody_cuadro:hover{
+    cursor: pointer;
+}

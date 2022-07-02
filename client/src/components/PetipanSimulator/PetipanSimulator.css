@@ -1,0 +1,30 @@
+.PetipanSimulator{
+    border: 1px solid black;
+    display:flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+#pedidoimagen{
+    display:flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-direction: column;
+}
+#petipan{
+    border: 3px solid black;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    margin: 5px 5px 5px 5px;
+}
+#caja{
+    border: 3px solid black;
+    display:flex;
+    flex-direction: column;
+    margin: 10px;
+    background-color: wheat;
+}
+
+#caja div {
+    display:flex;
+}
