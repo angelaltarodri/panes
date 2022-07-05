@@ -1,3 +1,22 @@
+:root{
+  --tomato: RGB(233, 78, 27);
+  --pato: RGB(251, 186, 0);
+  --oak: RGB(81, 61, 61);
+}
+@font-face {
+  font-family: base;
+  src: url(./components/Fonts/ZingRustDemo-Base.otf);
+}
+@font-face {
+  font-family: sans;
+  src: url(./components/Fonts/ZingSansRustLDemo-Base.otf);
+}
+@font-face {
+  font-family: script;
+  src: url(./components/Fonts/ZingScriptRustSBDemo-Base.otf);
+}
 .App {
   text-align: center;
+  font-family: sans;
+  font-size: 15px;
 }

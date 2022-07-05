@@ -19,7 +19,7 @@ export default function PetipanSimulator({pedido}) {
                 }
                 for (let k = 0; k < items.length; k++) {
                     if (pedido_keys[i] == items[k].itemCode){
-                        pedidoimagen += `<div id="petipan" style="background-color:${items[k].itemColor}"></div>`
+                        pedidoimagen += `<div id="petipan" style="background-color:${items[k].itemBackgroundColor}"></div>`
                     }
                 }
                 if(j != 0 && (j-4)%5 == 0){

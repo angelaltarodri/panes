@@ -2,12 +2,9 @@
     border: 1px solid black;
     display:flex;
     justify-content: center;
-    /* align-items: center; */
 }
 #pedidoimagen{
     display:flex;
-    /* justify-content: center; */
-    /* align-items: center; */
     flex-direction: column;
 }
 #petipan{
@@ -22,7 +19,7 @@
     display:flex;
     flex-direction: column;
     margin: 10px;
-    background-color: wheat;
+    background-color:beige;
 }
 
 #caja div {

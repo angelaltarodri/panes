@@ -1,34 +1,60 @@
 const initialData = {
     items: [
         {
-            itemName: "Pollo con apio",
+            itemLongName: "Pan con Pollo y Apio",
+            itemShortName: "Pollo y apio",
             itemCode: "pollo_apio",
-            itemColor: "yellowgreen"
+            itemBackgroundColor: "yellowgreen",
+            itemTextColor: "black"
         },
         {
-            itemName:"Pollo clásico",
+            itemLongName:"Pan con Pollo Clásico",
+            itemShortName:"Pollo clásico",
             itemCode: "pollo_clasico",
-            itemColor: "white"
+            itemBackgroundColor: "white",
+            itemTextColor: "black"
         },
         {
-            itemName:"Pollo con durazno",
+            itemLongName:"Pan con Pollo y Durazno",
+            itemShortName:"Pollo y durazno",
             itemCode: "pollo_durazno",
-            itemColor: "yellow"
+            itemBackgroundColor: "yellow",
+            itemTextColor: "black"
         },
         {
-            itemName:"Pollo con tocino",
+            itemLongName:"Pan con Pollo y Tocino",
+            itemShortName:"Pollo y tocino",
             itemCode: "pollo_tocino",
-            itemColor: "orange"
+            itemBackgroundColor: "orange",
+            itemTextColor: "black"
         },
         {
-            itemName:"Pollo con cabanossi",
+            itemLongName:"Pan con Pollo y Cabanossi",
+            itemShortName:"Pollo y cabanossi",
             itemCode: "pollo_cabanossi",
-            itemColor: "red"
+            itemBackgroundColor: "red",
+            itemTextColor: "white"
         },
         {
-            itemName:"Cheese Burger",
+            itemLongName:"Hamburguesa con Queso Clásica",
+            itemShortName:"Cheese Burger",
             itemCode: "cheese_burger",
-            itemColor: "brown"
+            itemBackgroundColor: "brown",
+            itemTextColor: "white"
+        },
+        {
+            itemLongName:"Pan con Huevo y Cabanossi",
+            itemShortName:"Huevo c. cabanossi",
+            itemCode: "huevo_cabanossi",
+            itemBackgroundColor: "wheat",
+            itemTextColor: "black"
+        },
+        {
+            itemLongName:"Pan con Salchicha Huachana y Huevo",
+            itemShortName:"Salchicha Huachana",
+            itemCode: "salchicha_huachana",
+            itemBackgroundColor: "gold",
+            itemTextColor: "black"
         },
     ]
 }
