@@ -11,7 +11,7 @@ export default function StoreNav() {
                 <img src={logo} alt="logo" className="StoreNav_logo" />
             </div>
             <div>
-                <div>USUARIO</div>
+                <div>USUARIO</div> 
                 <div>CARRITO</div>
             </div>
         </div>
