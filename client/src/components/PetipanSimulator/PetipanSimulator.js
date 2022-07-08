@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './PetipanSimulator.css'
 import {useSelector} from 'react-redux'
 export default function PetipanSimulator({pedido}) {
-    const items = useSelector(store => store.itemsReducer.items)  
+    const items = useSelector(store => store.itemsReducer.petipanesSabores)  
     function pedidoimagen() {
         let pedidoimagen = ""
         

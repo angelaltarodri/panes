@@ -36,7 +36,7 @@ function App() {
                 <Route path="/tienda" exact >
                   <StoreBody />
                 </Route>
-                <Route path="/tienda/petipanes" exact >
+                <Route path="/tienda/petipanes/:cant" >
                   <StorePetipanes />
                 </Route>
               </Route>

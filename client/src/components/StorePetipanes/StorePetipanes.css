@@ -53,7 +53,7 @@
     width: 80%;
     margin-left: 5px;
 }
-.StorePetipanes_cantidades{
+.StorePetipanes_cantidades, .StorePetipanes_selector{
     margin: 10px;
 }
 .StorePetipanes_cantidad:first-child:first-child{
@@ -64,6 +64,14 @@
     box-sizing: border-box;
     height:40px;
     border-top: 1px solid rgb(209, 209, 209);
+}
+
+.StorePetipanes_cantidadcero{
+    padding:10px;
+    margin:10px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
 }
 .StorePetipanes_cantidad div {
     padding:5px;
@@ -103,4 +111,12 @@
 }
 .StorePetipanes_cantidad_der{
     background-color: gold;
+}
+
+.StorePetipanes_cantida>div:first-child{
+    border-radius: 10px 0 0 10px !important;
+}
+
+.StorePetipanes_cantida>div:last-child{
+    border-radius: 0px 10px 10px 0px !important;
 }

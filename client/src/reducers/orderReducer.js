@@ -1,5 +1,5 @@
 const initialData = {
-    petipanes: [{}]
+    petipanes: [{}],
 }
 
 function orderReducer(state = initialData, action){
