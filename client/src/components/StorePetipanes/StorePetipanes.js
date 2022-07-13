@@ -14,16 +14,19 @@ export default function StorePetipanes() {
   const petipanesOrden = useSelector(store => store.orderReducer.petipanesOrden) 
   const petipanesMonto = useSelector(store => store.orderReducer.petipanesMonto) 
 
-  useEffect(()=>{
-    dispatch({type:'AMOUNT_PETIPANES', payload: paqueteElegido.paquetePrecio})
-  },[])
-
   const gohome = () => history.push("/tienda")
   const nOfItems = Object.keys(petipanesOrden[0])
 
   const itemsPlusFive = sabores.map(item=> {
+
+    const addToCart = () => {
+      petipanesOrden[0][item.itemCode] ? petipanesOrden[0][item.itemCode] += 5 : petipanesOrden[0][item.itemCode] = 5
+      let saborsito = sabores.find(sabor => sabor.itemCode == item.itemCode)
+      dispatch({type:'AMOUNT_PETIPANES', payload: petipanesMonto + saborsito.itemPriceChange})
+      dispatch({type:'ORDER_PETIPANES', payload: petipanesOrden})
+    }
     if(!item.itemType.includes("adicional"))
-    return <div className="StorePetipanes_opciones" onClick={()=>addToCart(item.itemCode)} style={{backgroundColor:item.itemBackgroundColor, color:item.itemTextColor}}>
+    return <div className="StorePetipanes_opciones" onClick={addToCart} style={{backgroundColor:item.itemBackgroundColor, color:item.itemTextColor}}>
       <div>
         <div> + 5 </div>
         <div> 
@@ -33,16 +36,11 @@ export default function StorePetipanes() {
     </div>
   })
 
-  const addToCart = (value) => {
-    petipanesOrden[0][value] ? petipanesOrden[0][value] += 5 : petipanesOrden[0][value] = 5
-    let saborsito = sabores.find(sabor => sabor.itemCode == value)
-    dispatch({type:'AMOUNT_PETIPANES', payload: petipanesMonto + saborsito.itemPriceChange})
-    dispatch({type:'ORDER_PETIPANES', payload: petipanesOrden})
-  }
-
   const itemsOnOrder = sabores.map(item => {
     const deleteItem = () => {
+      let nuevoMonto = petipanesMonto - (petipanesOrden[0][item.itemCode]/5*2)
       delete(petipanesOrden[0][item.itemCode])
+      dispatch({type:'AMOUNT_PETIPANES', payload: nuevoMonto})
       dispatch({type:'ORDER_PETIPANES', payload: petipanesOrden})
     }
     const cantidaD = (d) => {

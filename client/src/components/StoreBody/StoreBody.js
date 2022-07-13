@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import "./StoreBody.css"
 import{useHistory, Link} from "react-router-dom";
-import { useSelector } from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux'
 
 export default function StoreBody() {
-
-    const history = useHistory()
+    const dispatch = useDispatch()
     const [mostraropciones, setmostraropciones] = useState('none')
     const paquetes = useSelector(store => store.itemsReducer.petipanesPaquetes)  
-    console.log(paquetes)
-
     const linksToPaquetes = paquetes.map(paq => {
-        return <Link to={`/tienda/petipanes/${paq.paqueteNumero}`}>
+        const changeAmount = () => {
+            dispatch({type:'AMOUNT_PETIPANES', payload: paq.paquetePrecio})
+        }
+        return <Link to={`/tienda/petipanes/${paq.paqueteNumero}`} onClick={changeAmount}>
             <div className="StoreBody_petipanes-opciones">
                 {paq.paqueteNumero} petipanes
             </div>
