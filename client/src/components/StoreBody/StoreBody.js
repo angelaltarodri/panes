@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import "./StoreBody.css"
 import{useHistory, Link} from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 export default function StoreBody() {
 
     const history = useHistory()
     const [mostraropciones, setmostraropciones] = useState('none')
-    const paquetes = [25,50,75,100]
+    const paquetes = useSelector(store => store.itemsReducer.petipanesPaquetes)  
+    console.log(paquetes)
 
     const linksToPaquetes = paquetes.map(paq => {
-        return <Link to={`/tienda/petipanes/${paq}`}>
+        return <Link to={`/tienda/petipanes/${paq.paqueteNumero}`}>
             <div className="StoreBody_petipanes-opciones">
-                {paq} petipanes
+                {paq.paqueteNumero} petipanes
             </div>
         </Link>
     })

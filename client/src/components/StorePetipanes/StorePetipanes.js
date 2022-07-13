@@ -11,13 +11,12 @@ export default function StorePetipanes() {
   const sabores = useSelector(store => store.itemsReducer.petipanesSabores)  
   const paquetes = useSelector(store => store.itemsReducer.petipanesPaquetes)  
   const paqueteElegido = paquetes.find(paquete => paquete.paqueteNumero == cant)
+  const petipanesOrden = useSelector(store => store.orderReducer.petipanesOrden) 
+  const petipanesMonto = useSelector(store => store.orderReducer.petipanesMonto) 
 
   useEffect(()=>{
     dispatch({type:'AMOUNT_PETIPANES', payload: paqueteElegido.paquetePrecio})
   },[])
-
-  const petipanesOrden = useSelector(store => store.orderReducer.petipanesOrden) 
-  const petipanesMonto = useSelector(store => store.orderReducer.petipanesMonto) 
 
   const gohome = () => history.push("/tienda")
   const nOfItems = Object.keys(petipanesOrden[0])

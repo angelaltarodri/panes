@@ -7,7 +7,6 @@ const initialData = {
             itemCode: "caja_petipanes",
             itemBackgroundColor: "white",
             itemTextColor: "black",
-            itemPriceNormal: true,
             itemPriceChange: 0
         },
         {
@@ -17,7 +16,6 @@ const initialData = {
             itemCode: "pollo_apio",
             itemBackgroundColor: "yellowgreen",
             itemTextColor: "black",
-            itemPriceNormal: true,
             itemPriceChange: 0
         },
         {
@@ -27,7 +25,6 @@ const initialData = {
             itemCode: "pollo_clasico",
             itemBackgroundColor: "white",
             itemTextColor: "black",
-            itemPriceNormal: true,
             itemPriceChange: 0
         },
         {
@@ -37,7 +34,6 @@ const initialData = {
             itemCode: "pollo_durazno",
             itemBackgroundColor: "yellow",
             itemTextColor: "black",
-            itemPriceNormal: true,
             itemPriceChange: 0
         },
         {
@@ -47,7 +43,6 @@ const initialData = {
             itemCode: "pollo_tocino",
             itemBackgroundColor: "orange",
             itemTextColor: "black",
-            itemPriceNormal: true,
             itemPriceChange: 0
         },
         {
@@ -57,7 +52,6 @@ const initialData = {
             itemCode: "pollo_cabanossi",
             itemBackgroundColor: "red",
             itemTextColor: "white",
-            itemPriceNormal: true,
             itemPriceChange: 0
         },
         {
@@ -67,7 +61,6 @@ const initialData = {
             itemCode: "cheese_burger",
             itemBackgroundColor: "brown",
             itemTextColor: "white",
-            itemPriceNormal: false,
             itemPriceChange: 2
         },
         {
@@ -77,7 +70,6 @@ const initialData = {
             itemCode: "huevo_cabanossi",
             itemBackgroundColor: "wheat",
             itemTextColor: "black",
-            itemPriceNormal: true,
             itemPriceChange: 0
         },
         {
@@ -87,9 +79,26 @@ const initialData = {
             itemCode: "salchicha_huachana",
             itemBackgroundColor: "gold",
             itemTextColor: "black",
-            itemPriceNormal: true,
             itemPriceChange: 0
         },
+    ],
+    petipanesPaquetes: [
+        {
+            paqueteNumero: 25,
+            paquetePrecio: 40
+        },
+        {
+            paqueteNumero: 50,
+            paquetePrecio: 75
+        },
+        {
+            paqueteNumero: 75,
+            paquetePrecio: 110
+        },
+        {
+            paqueteNumero: 100,
+            paquetePrecio: 145
+        }
     ]
 }
 

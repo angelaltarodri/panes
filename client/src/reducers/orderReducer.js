@@ -1,12 +1,17 @@
 const initialData = {
-    petipanes: [{}],
+    petipanesOrden: [{}],
+    petipanesMonto: 0
 }
 
 function orderReducer(state = initialData, action){
     switch(action.type){
         case 'ORDER_PETIPANES' : return {
             ...state,
-            petipanes: [...action.payload]
+            petipanesOrden: [...action.payload]
+        }
+        case 'AMOUNT_PETIPANES' : return {
+            ...state,
+            petipanesMonto: action.payload
         }
     }
     return state
