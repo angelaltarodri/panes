@@ -15,10 +15,14 @@ export default function StorePetipanes() {
   const petipanesMonto = useSelector(store => store.orderReducer.petipanesMonto) 
 
   const gohome = () => history.push("/tienda")
-  const nOfItems = Object.keys(petipanesOrden[0])
+  // Sabores dentro de la orden
+  const saboresInOrder = Object.keys(petipanesOrden[0])
+  // Número de petipanes en la orden
+  const nOfPetipanes = Object.values(petipanesOrden[0]).reduce(function(a, b){
+    return a + b;
+  }, 0);
 
   const itemsPlusFive = sabores.map(item=> {
-
     const addToCart = () => {
       petipanesOrden[0][item.itemCode] ? petipanesOrden[0][item.itemCode] += 5 : petipanesOrden[0][item.itemCode] = 5
       let saborsito = sabores.find(sabor => sabor.itemCode == item.itemCode)
@@ -38,20 +42,22 @@ export default function StorePetipanes() {
 
   const itemsOnOrder = sabores.map(item => {
     const deleteItem = () => {
-      let nuevoMonto = petipanesMonto - (petipanesOrden[0][item.itemCode]/5*2)
+      let nuevoMonto = petipanesMonto
+      if (item.itemPriceChange > 0)
+        nuevoMonto -= (petipanesOrden[0][item.itemCode]/5*2)
       delete(petipanesOrden[0][item.itemCode])
       dispatch({type:'AMOUNT_PETIPANES', payload: nuevoMonto})
       dispatch({type:'ORDER_PETIPANES', payload: petipanesOrden})
     }
     const cantidaD = (d) => {
-      return <div className={`StorePetipanes_cantidad ` + d}>
+      return <div className={`StorePetipanes_cantidad `}>
         <div className={`StorePetipanes_cantidad_izq`}> {petipanesOrden[0][item.itemCode]}</div>
-        <div className="StorePetipanes_cantidad_mid">{item.itemShortName}</div>
+        <div className="StorePetipanes_cantidad_mid">{item.itemShortName} {item.itemPriceChange > 0 ? `+ ${item.itemPriceChange}` : null}</div>
         <div className={`StorePetipanes_cantidad_der`} onClick={deleteItem}> x </div>
       </div>
     }
     if(petipanesOrden[0][item.itemCode]){
-      if(nOfItems.length == 1) return cantidaD("StorePetipanes_cantida") 
+      if(saboresInOrder.length == 1) return cantidaD("StorePetipanes_cantida") 
       else return cantidaD("")
     } 
   })
@@ -64,20 +70,27 @@ export default function StorePetipanes() {
         <div className="StorePetipanes_selector">
           {itemsPlusFive}
         </div>
-        <div>Monto:</div>
-        <div>{petipanesMonto}</div>
         <div className="StorePetipanes_cantidades">
           <div>En tu pedido hay: </div>
           <div>
-            {nOfItems == "" ? 
-              <div className="StorePetipanes_cantidadcero">
-                Todavía no hay nada aquí.
-              </div> : 
-              itemsOnOrder}
+            {saboresInOrder == "" ? 
+            <div className={`StorePetipanes_cantidad `}>
+              <div className={`StorePetipanes_cantidad_izq`}> To</div>
+              <div className="StorePetipanes_cantidad_mid"> davia no hay</div>
+              <div className={`StorePetipanes_cantidad_der`}> a</div>
+            </div>: 
+            itemsOnOrder}
+            <div className={`StorePetipanes_cantidad `}>
+              <div className={`StorePetipanes_cantidad_izq`}> {nOfPetipanes}</div>
+              <div className="StorePetipanes_cantidad_mid">PETIPANES</div>
+              <div className={`StorePetipanes_cantidad_der`}>  </div>
+            </div>
           </div>
         </div>
+        <div>Monto:</div>
+        <div>{petipanesMonto}</div>
       </div>
-      {nOfItems == "" ? null : 
+      {saboresInOrder == "" ? null : 
         <div>
           <div> Tu caja quedaría así: </div>
           <PetipanSimulator pedido={petipanesOrden[0]} /> 
