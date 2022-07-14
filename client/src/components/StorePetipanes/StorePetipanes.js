@@ -10,7 +10,7 @@ export default function StorePetipanes() {
   const {cant} = useParams()
   const sabores = useSelector(store => store.itemsReducer.petipanesSabores)  
   const paquetes = useSelector(store => store.itemsReducer.petipanesPaquetes)  
-  const paqueteElegido = paquetes.find(paquete => paquete.paqueteNumero == cant)
+  // const paqueteElegido = paquetes.find(paquete => paquete.paqueteNumero == cant)
   const petipanesOrden = useSelector(store => store.orderReducer.petipanesOrden) 
   const petipanesMonto = useSelector(store => store.orderReducer.petipanesMonto) 
 
@@ -53,7 +53,8 @@ export default function StorePetipanes() {
       dispatch({type:'AMOUNT_PETIPANES', payload: nuevoMonto})
       dispatch({type:'ORDER_PETIPANES', payload: petipanesOrden})
     }
-    const cantidaD = (d) => {
+    //si existe el item en forma de key en el obj petipanesOrden, se renderiza
+    if(petipanesOrden[0][item.itemCode]){
       return <div className={`StorePetipanes_cantidad `}>
         <div className={`StorePetipanes_cantidad_izq`}> {petipanesOrden[0][item.itemCode]}</div>
         <div className="StorePetipanes_cantidad_mid">{item.itemMiniName}</div>
@@ -61,23 +62,34 @@ export default function StorePetipanes() {
           <div className={`StorePetipanes_cantidad_subcolored`}>
             + {item.itemPriceChange*petipanesOrden[0][item.itemCode]/5}
           </div>
-        : <div className={`StorePetipanes_cantidad_submid`}>
-
-        </div> }
+        : <div className={`StorePetipanes_cantidad_submid`} />}
         <div className={`StorePetipanes_cantidad_der`} onClick={deleteItem}> x </div>
       </div>
-    }
-    if(petipanesOrden[0][item.itemCode]){
-      if(saboresInOrder.length == 1) return cantidaD("StorePetipanes_cantida") 
-      else return cantidaD("")
     } 
   })
 
   return (
     <div>
       <div className="StorePetipanes_botones">
-        <div className="StorePetipanes_backButton" onClick={gohome}>Volver</div>
-        Agregar:
+        <div className="StorePetipanes_helpButtons">
+          <div onClick={gohome}>Volver</div> 
+          <div>
+            <div>
+              <div className="StorePetipanes_">
+                2 cajas
+              </div>
+              <div className="StorePetipanes_">
+                +
+              </div>
+              <div className="StorePetipanes_">
+                -
+              </div>
+            </div>
+            <div>
+              TOTAL: {cant} PETIPANES
+            </div>
+          </div>
+        </div>
         <div className="StorePetipanes_selector">
           {itemsPlusFive}
         </div>

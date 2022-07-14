@@ -9,6 +9,10 @@ function orderReducer(state = initialData, action){
             ...state,
             petipanesOrden: [...action.payload]
         }
+        case 'ERASE_ORDER' : return {
+            ...state,
+            petipanesOrden: [{}]
+        }
         case 'AMOUNT_PETIPANES' : return {
             ...state,
             petipanesMonto: action.payload

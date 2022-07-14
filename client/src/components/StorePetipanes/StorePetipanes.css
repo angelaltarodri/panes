@@ -3,27 +3,17 @@
     flex-direction: column;
     align-items: center;
 }
-.StorePetipanes_backButton{
-    width: 90px;
-    height: 30px;
-    color: white;
-    background-color: var(--oak);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin: 10px;
-}
 .StorePetipanes_selector{
     display:flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 280px;
+    width: 270px;
 }
 
 .StorePetipanes_opciones{
-    width: 140px;
+    width: 135px;
     padding: 5px;
-    height: 60px;
+    height: 50px;
     box-sizing: border-box;
     text-align: start;
     display:flex;
@@ -41,7 +31,6 @@
 .StorePetipanes_opciones:last-child{
     border-radius: 0px 0px 10px 0px;
 }
-
 .StorePetipanes_opciones>div{
     display:flex;
 }
@@ -127,7 +116,7 @@
 }
 .StorePetipanes_cantidad > .StorePetipanes_cantidad_unique{
     background-color: white;
-    background-color: var(--oak);
+    background-color: var(--tomato);
     color: white;
     width: 270px;
     transition: background-color 1500ms
@@ -141,6 +130,49 @@
 }
 .StorePetipanes_cantidad:nth-last-child(1){
     border-radius: 0px 0px 10px 10px;
-    background-color: var(--tomato);
+    background-color: var(--oak);
     color: white;
+}
+.StorePetipanes_helpButtons{
+    width: 270px;
+    margin: 10px;
+}
+.StorePetipanes_helpButtons , .StorePetipanes_helpButtons > div:first-child, .StorePetipanes_helpButtons > div:nth-child(2) > div:first-child, .StorePetipanes_helpButtons > div:nth-child(2) > div:nth-child(2), .StorePetipanes_helpButtons > div:nth-child(2) > div:first-child div:first-child, .StorePetipanes_helpButtons > div:nth-child(2) > div:first-child div:nth-child(2), .StorePetipanes_helpButtons > div:nth-child(2) > div:first-child div:nth-child(3) {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.StorePetipanes_helpButtons > div:nth-child(2) > div:first-child div:first-child{
+    background-color: white;
+    height: 30px;
+    width: 120px;
+}
+.StorePetipanes_helpButtons > div:nth-child(2) > div:first-child div:nth-child(2){
+    background-color: green;
+    height: 30px;
+    width: 40px;
+    color: white;
+}
+.StorePetipanes_helpButtons > div:nth-child(2) > div:first-child div:nth-child(3){
+    background-color: var(--oak);
+    height: 30px;
+    width: 40px;
+    color: white;
+    border-radius: 0px 10px 0px 0px;
+}
+
+.StorePetipanes_helpButtons > div:nth-child(2) > div:nth-child(2){
+    background-color:var(--tomato);
+    height: 30px;
+    width: 200px;
+    border-radius: 0px 0px 10px 0px;
+    color: white;
+}
+.StorePetipanes_helpButtons > div:first-child{
+    background-color: var(--oak);
+    color: white;
+    border-radius: 10px 0px 0px 10px;
+    height: 60px;
+    width: 70px;
 }
