@@ -24,17 +24,21 @@ export default function StorePetipanes() {
 
   const itemsPlusFive = sabores.map(item=> {
     const addToCart = () => {
-      petipanesOrden[0][item.itemCode] ? petipanesOrden[0][item.itemCode] += 5 : petipanesOrden[0][item.itemCode] = 5
-      let saborsito = sabores.find(sabor => sabor.itemCode == item.itemCode)
-      dispatch({type:'AMOUNT_PETIPANES', payload: petipanesMonto + saborsito.itemPriceChange})
-      dispatch({type:'ORDER_PETIPANES', payload: petipanesOrden})
+      if (cant != nOfPetipanes){
+        petipanesOrden[0][item.itemCode] ? petipanesOrden[0][item.itemCode] += 5 : petipanesOrden[0][item.itemCode] = 5
+        let saborsito = sabores.find(sabor => sabor.itemCode == item.itemCode)
+        dispatch({type:'AMOUNT_PETIPANES', payload: petipanesMonto + saborsito.itemPriceChange})
+        dispatch({type:'ORDER_PETIPANES', payload: petipanesOrden})
+      } else {
+        alert("enough")
+      }
     }
     if(!item.itemType.includes("adicional"))
     return <div className="StorePetipanes_opciones" onClick={addToCart} style={{backgroundColor:item.itemBackgroundColor, color:item.itemTextColor}}>
       <div>
         <div> + 5 </div>
         <div> 
-          {item.itemShortName} 
+          {item.itemShortName} { item.itemPriceChange > 0 ? "***" : null}
         </div>
       </div>
     </div>
@@ -52,7 +56,14 @@ export default function StorePetipanes() {
     const cantidaD = (d) => {
       return <div className={`StorePetipanes_cantidad `}>
         <div className={`StorePetipanes_cantidad_izq`}> {petipanesOrden[0][item.itemCode]}</div>
-        <div className="StorePetipanes_cantidad_mid">{item.itemShortName} {item.itemPriceChange > 0 ? `+ ${item.itemPriceChange}` : null}</div>
+        <div className="StorePetipanes_cantidad_mid">{item.itemMiniName}</div>
+        {item.itemPriceChange > 0 ? 
+          <div className={`StorePetipanes_cantidad_subcolored`}>
+            + {item.itemPriceChange*petipanesOrden[0][item.itemCode]/5}
+          </div>
+        : <div className={`StorePetipanes_cantidad_submid`}>
+
+        </div> }
         <div className={`StorePetipanes_cantidad_der`} onClick={deleteItem}> x </div>
       </div>
     }
@@ -71,28 +82,36 @@ export default function StorePetipanes() {
           {itemsPlusFive}
         </div>
         <div className="StorePetipanes_cantidades">
-          <div>En tu pedido hay: </div>
           <div>
             {saboresInOrder == "" ? 
             <div className={`StorePetipanes_cantidad `}>
-              <div className={`StorePetipanes_cantidad_izq`}> To</div>
-              <div className="StorePetipanes_cantidad_mid"> davia no hay</div>
-              <div className={`StorePetipanes_cantidad_der`}> a</div>
+              <div>
+                ¡hola! elige tus sabores
+              </div>
             </div>: 
             itemsOnOrder}
             <div className={`StorePetipanes_cantidad `}>
-              <div className={`StorePetipanes_cantidad_izq`}> {nOfPetipanes}</div>
-              <div className="StorePetipanes_cantidad_mid">PETIPANES</div>
-              <div className={`StorePetipanes_cantidad_der`}>  </div>
+              { cant == nOfPetipanes ?
+                <div className="StorePetipanes_cantidad_orderr"> 
+                  Tu pedido esta completo.
+                </div>
+                :
+                <div className="StorePetipanes_cantidad_unique"> 
+                  Elegiste {nOfPetipanes} pancitos de {cant}.
+                </div>
+              }
+            </div>
+            <div className={`StorePetipanes_cantidad `}>
+              <div> 
+                {cant} PETIPANES A S/ {petipanesMonto}
+              </div>
             </div>
           </div>
         </div>
-        <div>Monto:</div>
-        <div>{petipanesMonto}</div>
       </div>
       {saboresInOrder == "" ? null : 
         <div>
-          <div> Tu caja quedaría así: </div>
+          <div> Tu pedido quedaría así: </div>
           <PetipanSimulator pedido={petipanesOrden[0]} /> 
         </div>
       }
