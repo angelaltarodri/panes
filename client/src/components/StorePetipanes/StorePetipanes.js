@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import{useHistory, useParams} from "react-router-dom";
+import{useParams} from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux'
 import "./StorePetipanes.css"
 import PetipanSimulator from '../PetipanSimulator/PetipanSimulator'
+import StorePetipanes_helpButtons from './StorePetipanes_helpButtons';
 
 export default function StorePetipanes() {
   const dispatch = useDispatch()
-  const history = useHistory()  
   const {cant} = useParams()
   const sabores = useSelector(store => store.itemsReducer.petipanesSabores)  
-  const paquetes = useSelector(store => store.itemsReducer.petipanesPaquetes)  
-  // const paqueteElegido = paquetes.find(paquete => paquete.paqueteNumero == cant)
   const petipanesOrden = useSelector(store => store.orderReducer.petipanesOrden) 
   const petipanesMonto = useSelector(store => store.orderReducer.petipanesMonto) 
 
-  const gohome = () => history.push("/tienda")
   // Sabores dentro de la orden
   const saboresInOrder = Object.keys(petipanesOrden[0])
   // Número de petipanes en la orden
@@ -71,25 +68,7 @@ export default function StorePetipanes() {
   return (
     <div>
       <div className="StorePetipanes_botones">
-        <div className="StorePetipanes_helpButtons">
-          <div onClick={gohome}>Volver</div> 
-          <div>
-            <div>
-              <div className="StorePetipanes_">
-                2 cajas
-              </div>
-              <div className="StorePetipanes_">
-                +
-              </div>
-              <div className="StorePetipanes_">
-                -
-              </div>
-            </div>
-            <div>
-              TOTAL: {cant} PETIPANES
-            </div>
-          </div>
-        </div>
+        <StorePetipanes_helpButtons cant={cant}/>
         <div className="StorePetipanes_selector">
           {itemsPlusFive}
         </div>
@@ -101,7 +80,8 @@ export default function StorePetipanes() {
                 ¡hola! elige tus sabores
               </div>
             </div>: 
-            itemsOnOrder}
+            itemsOnOrder
+            }
             <div className={`StorePetipanes_cantidad `}>
               { cant == nOfPetipanes ?
                 <div className="StorePetipanes_cantidad_orderr"> 
