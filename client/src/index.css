@@ -8,6 +8,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var( --pato);
 }
+::-webkit-scrollbar {
+  display: none;
+}
 
 a{
   text-decoration: none;

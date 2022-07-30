@@ -4,6 +4,8 @@ import {useSelector, useDispatch} from 'react-redux'
 import "./StorePetipanes.css"
 import PetipanSimulator from '../PetipanSimulator/PetipanSimulator'
 import StorePetipanes_helpButtons from './StorePetipanes_helpButtons';
+import StorePetipanes_itemsOnOrder from './StorePetipanes_itemsOnOrder';
+import StorePetipanes_itemsPlusFive from './StorePetipanes_itemsPlusFive';
 
 export default function StorePetipanes() {
   const dispatch = useDispatch()
@@ -19,59 +21,11 @@ export default function StorePetipanes() {
     return a + b;
   }, 0);
 
-  const itemsPlusFive = sabores.map(item=> {
-    const addToCart = () => {
-      if (cant != nOfPetipanes){
-        petipanesOrden[0][item.itemCode] ? petipanesOrden[0][item.itemCode] += 5 : petipanesOrden[0][item.itemCode] = 5
-        let saborsito = sabores.find(sabor => sabor.itemCode == item.itemCode)
-        dispatch({type:'AMOUNT_PETIPANES', payload: petipanesMonto + saborsito.itemPriceChange})
-        dispatch({type:'ORDER_PETIPANES', payload: petipanesOrden})
-      } else {
-        alert("enough")
-      }
-    }
-    if(!item.itemType.includes("adicional"))
-    return <div className="StorePetipanes_opciones" onClick={addToCart} style={{backgroundColor:item.itemBackgroundColor, color:item.itemTextColor}}>
-      <div>
-        <div> + 5 </div>
-        <div> 
-          {item.itemShortName} { item.itemPriceChange > 0 ? "***" : null}
-        </div>
-      </div>
-    </div>
-  })
-
-  const itemsOnOrder = sabores.map(item => {
-    const deleteItem = () => {
-      let nuevoMonto = petipanesMonto
-      if (item.itemPriceChange > 0)
-        nuevoMonto -= (petipanesOrden[0][item.itemCode]/5*2)
-      delete(petipanesOrden[0][item.itemCode])
-      dispatch({type:'AMOUNT_PETIPANES', payload: nuevoMonto})
-      dispatch({type:'ORDER_PETIPANES', payload: petipanesOrden})
-    }
-    //si existe el item en forma de key en el obj petipanesOrden, se renderiza
-    if(petipanesOrden[0][item.itemCode]){
-      return <div className={`StorePetipanes_cantidad `}>
-        <div className={`StorePetipanes_cantidad_izq`}> {petipanesOrden[0][item.itemCode]}</div>
-        <div className="StorePetipanes_cantidad_mid">{item.itemMiniName}</div>
-        {item.itemPriceChange > 0 ? 
-          <div className={`StorePetipanes_cantidad_subcolored`}>
-            + {item.itemPriceChange*petipanesOrden[0][item.itemCode]/5}
-          </div>
-        : <div className={`StorePetipanes_cantidad_submid`} />}
-        <div className={`StorePetipanes_cantidad_der`} onClick={deleteItem}> x </div>
-      </div>
-    } 
-  })
-
   return (
-    <div>
+    <div className="StorePetipanes_container">
       <div className="StorePetipanes_botones">
         <StorePetipanes_helpButtons cant={cant}/>
-        <div className="StorePetipanes_selector">
-          {itemsPlusFive}
-        </div>
+        <StorePetipanes_itemsPlusFive cant={cant}/>
         <div className="StorePetipanes_cantidades">
           <div>
             {saboresInOrder == "" ? 
@@ -80,7 +34,7 @@ export default function StorePetipanes() {
                 ¡hola! elige tus sabores
               </div>
             </div>: 
-            itemsOnOrder
+            <StorePetipanes_itemsOnOrder/>
             }
             <div className={`StorePetipanes_cantidad `}>
               { cant == nOfPetipanes ?

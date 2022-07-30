@@ -1,18 +1,52 @@
+/* @media (max-width: 414px) {
+    .StoreNav{
+        width: 414px;
+    }
+}
+@media (min-width: 414px) {
+    .StoreNav{
+        width: 100%;
+    }
+} */
+.StoreNav_container{
+    background-color: var(--tomato);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 .StoreNav{
     display:flex;
-    justify-content: center;
-    background-color: var(--tomato);
+    color: white;
+    height: 200px;
+    width: 390px;
 }
-.StoreNav >div {
+.StoreNav >div:first-child{
+    width: 50%;
     display:flex;
     justify-content: center;
-    flex-direction: column;
-    color: white;
-    font-family: sans;
-}
-.StoreNav div {
-    margin: 10px;
+    align-items: center;
 }
 .StoreNav_logo{
-    height:100px
+    height:120px
+}
+.StoreNav_titles{
+    width: 50%;
+}
+.StoreNav_titles div{
+    height: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.StoreNav_titles div:hover{
+    cursor:pointer;
+    background-color: white;
+    color: var(--oak);
+}
+.StoreNav>div:first-child:hover{
+    background-color: white;
+}
+.StoreNav>div:first-child:hover .StoreNav_logo {
+    filter:invert(1) opacity(0.7) drop-shadow(0 0 0 var(--oak));
+    
 }

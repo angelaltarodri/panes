@@ -28,18 +28,20 @@ function App() {
         <PersistGate persistor={persistor}>
           <BrowserRouter>
             <Switch>
-              <Route path="/" exact >
-                <HomeNav />
-              </Route>
-              <Route path="/tienda" >
-                <StoreNav />
-                <Route path="/tienda" exact >
-                  <StoreBody />
+              
+                <Route path="/" exact >
+                  <HomeNav />
                 </Route>
-                <Route path="/tienda/petipanes/:cant" >
-                  <StorePetipanes />
+                <Route path="/tienda" >
+                  <StoreNav />
+                  <Route path="/tienda" exact >
+                    <StoreBody />
+                  </Route>
+                  <Route path="/tienda/petipanes/:cant" >
+                    <StorePetipanes />
+                  </Route>
                 </Route>
-              </Route>
+              
             </Switch>
           </BrowserRouter>  
         </PersistGate>

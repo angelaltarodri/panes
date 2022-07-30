@@ -94,19 +94,19 @@ const initialData = {
     petipanesPaquetes: [
         {
             paqueteNumero: 25,
-            paquetePrecio: 40
+            paquetePrecio: 55
         },
         {
             paqueteNumero: 50,
-            paquetePrecio: 75
+            paquetePrecio: 90
         },
         {
             paqueteNumero: 75,
-            paquetePrecio: 110
+            paquetePrecio: 130
         },
         {
             paqueteNumero: 100,
-            paquetePrecio: 145
+            paquetePrecio: 165
         }
     ]
 }

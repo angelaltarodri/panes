@@ -1,3 +1,6 @@
+.StorePetipanes_container{
+    margin: 10px;
+}
 .StorePetipanes_botones{
     display:flex;
     flex-direction: column;
@@ -113,6 +116,7 @@
 .StorePetipanes_cantidad:first-child{
     background-color: white;
     border-radius: 10px 10px 0px 0px;
+    
 }
 .StorePetipanes_cantidad > .StorePetipanes_cantidad_unique{
     background-color: white;
