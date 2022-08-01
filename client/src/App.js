@@ -28,7 +28,6 @@ function App() {
         <PersistGate persistor={persistor}>
           <BrowserRouter>
             <Switch>
-              
                 <Route path="/" exact >
                   <HomeNav />
                 </Route>
