@@ -1,0 +1,14 @@
+.StoreTips_container{
+    width: 300px;
+    margin: 10px;
+    color: white;
+    background-color:green;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 7px 5px 7px 5px;
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

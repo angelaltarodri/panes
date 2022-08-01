@@ -51,7 +51,7 @@
 .StorePetipanes_cantidad:first-child:first-child{
     border-top: 0px;
 }
-.StorePetipanes_cantidad{
+.StorePetipanes_cantidad, .StorePetipanes_cantidad_no:first-child{
     display:flex;
     justify-content: center;
     box-sizing: border-box;
@@ -60,9 +60,10 @@
     border-top: 1px solid rgb(209, 209, 209);
 }
 
-.StorePetipanes_cantidad div {
+.StorePetipanes_cantidad div, .StorePetipanes_cantidad_no:first-child {
     display:flex;
     align-items:center;
+    transition: color 1500ms
 }
 .StorePetipanes_cantidad div:first-child{
     justify-content:center;
@@ -86,6 +87,7 @@
     background-color: white;
     width: 40px;
     color: black;
+    transition: background-color 1500ms !important
 }
 .StorePetipanes_cantidad_mid{
     text-align: start;
@@ -93,12 +95,19 @@
     background-color: white;
     color: black;
     width: 160px;
+    transition: background-color 1500ms  !important
 }
 .StorePetipanes_cantidad_submid{
     text-align: start;
     box-sizing: border-box;
     background-color: white;
     width: 50px;
+    transition: background-color 1500ms !important
+}
+.StorePetipanes_cantidad_ready{
+    background-color: green;
+    color: white;
+    transition: background-color 1500ms !important;
 }
 .StorePetipanes_cantidad_subcolored{
     justify-content:center;
@@ -112,11 +121,14 @@
     color: black;
     width: 30px;
     justify-content:center !important;
+    
 }
-.StorePetipanes_cantidad:first-child{
-    background-color: white;
+.StorePetipanes_cantidad:first-child, .StorePetipanes_cantidad_no:first-child{
     border-radius: 10px 10px 0px 0px;
     
+}
+.StorePetipanes_cantidad_no:first-child{
+    background-color: white;
 }
 .StorePetipanes_cantidad > .StorePetipanes_cantidad_unique{
     background-color: white;
@@ -127,10 +139,10 @@
 }
 .StorePetipanes_cantidad > .StorePetipanes_cantidad_orderr{
     background-color: white;
-    background-color: green;
+    background-color: var(--oak);
     color: white;
     width: 270px;
-    transition: background-color 1500ms
+    transition: background-color 1500ms;
 }
 .StorePetipanes_cantidad:nth-last-child(1){
     border-radius: 0px 0px 10px 10px;
@@ -153,7 +165,7 @@
     width: 120px;
 }
 .StorePetipanes_helpButtons > div:nth-child(2) > div:first-child div:nth-child(2){
-    background-color: green;
+    background-color:royalblue;
     height: 30px;
     width: 40px;
     color: white;

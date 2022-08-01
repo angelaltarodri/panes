@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from 'react'
-import{useParams} from "react-router-dom";
+import{ useParams, useHistory } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux'
 import "./StorePetipanes.css"
+import "../StoreTips/StoreTips.css"
 import PetipanSimulator from '../PetipanSimulator/PetipanSimulator'
 import StorePetipanes_helpButtons from './StorePetipanes_helpButtons';
 import StorePetipanes_itemsOnOrder from './StorePetipanes_itemsOnOrder';
 import StorePetipanes_itemsPlusFive from './StorePetipanes_itemsPlusFive';
+import StoreTips from '../StoreTips/StoreTips';
 
 export default function StorePetipanes() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const {cant} = useParams()
-  const sabores = useSelector(store => store.itemsReducer.petipanesSabores)  
   const petipanesOrden = useSelector(store => store.orderReducer.petipanesOrden) 
+  const paquetes = useSelector(store => store.itemsReducer.petipanesPaquetes)  
   const petipanesMonto = useSelector(store => store.orderReducer.petipanesMonto) 
+
+  useEffect(()=>{
+    if(cant%25 !== 0 || cant > 100){
+      history.push("/tienda")
+    }
+    if (petipanesMonto == 0){
+      const montoElegido = paquetes.find(paquete => paquete.paqueteNumero == cant).paquetePrecio
+      dispatch({type:'AMOUNT_PETIPANES', payload:montoElegido})
+    }
+  },[])
 
   // Sabores dentro de la orden
   const saboresInOrder = Object.keys(petipanesOrden[0])
@@ -21,20 +34,42 @@ export default function StorePetipanes() {
     return a + b;
   }, 0);
 
+  const tipEliminarSabores = () => {
+    return <>
+      Si quiere eliminar un sabor, dé click en la <span style={{backgroundColor: "gold", color: "black", borderLeft: "10px solid gold", borderRight: "10px solid gold"}}> X</span> y vuelva a escoger uno que más le guste.
+    </>
+  }
+  const tipNumeroCajas = () => {
+    return <>
+      Si desea aumentar o reducir el N° de cajas, dé click en <span style={{backgroundColor: "royalblue", color: "white", borderLeft: "10px solid royalblue", borderRight: "10px solid royalblue"}}>+</span> o <span style={{backgroundColor: "var(--oak)", color: "white", borderLeft: "10px solid var(--oak)", borderRight: '10px solid var(--oak)'}}>-</span>.
+    </>
+  }
+  const tipMasCincoUnidades = () => {
+    return <>
+      Para agregar 5 unidades de un sabor, dé click en <span style={{backgroundColor: "white", color: "black", borderLeft: "10px solid white", borderRight: "10px solid white"}}>+ 5</span>.
+    </>
+  }
   return (
     <div className="StorePetipanes_container">
       <div className="StorePetipanes_botones">
+        <StoreTips text={tipNumeroCajas()} titulo={"AumentaCajas"}/>
         <StorePetipanes_helpButtons cant={cant}/>
+        <StoreTips text={tipMasCincoUnidades()} titulo={"AumentaCincoUnidades"}/>
         <StorePetipanes_itemsPlusFive cant={cant}/>
+        {
+          nOfPetipanes > 0 ? 
+          <StoreTips text={tipEliminarSabores()} titulo={"EliminarSabores"}/>
+          : null
+        }
         <div className="StorePetipanes_cantidades">
           <div>
             {saboresInOrder == "" ? 
-            <div className={`StorePetipanes_cantidad `}>
+            <div className={`StorePetipanes_cantidad_no `}>
               <div>
                 ¡hola! elige tus sabores
               </div>
             </div>: 
-            <StorePetipanes_itemsOnOrder/>
+            <StorePetipanes_itemsOnOrder cant={Number(cant)} nOfPetipanes={nOfPetipanes}/>
             }
             <div className={`StorePetipanes_cantidad `}>
               { cant == nOfPetipanes ?
