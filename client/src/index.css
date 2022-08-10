@@ -28,9 +28,22 @@ code {
 .btn{
   border-radius: 5px;
   margin: 10px;
+  background-color: white;
 }
 .btn_warning{
-  background-color: gold;
+  background-color: gold !important;
   color: black;
+  width: 200px;
+}
+
+.btn_box{
+  background-color: beige;
+  color: black;
+  width: 200px;
+}
+
+.btn_tomato{
+  background-color: var( --tomato);
+  color: white;
   width: 200px;
 }

@@ -11,6 +11,10 @@ export default function HomeNav() {
     }
   }
 
+  const clearStorage = () => {
+    localStorage.clear()
+  }
+
   return (
     <div className="HomeNav">
       <div>EL CHICO DE LOS PANES</div>
@@ -21,6 +25,9 @@ export default function HomeNav() {
         <option value="prensa">Prensa</option>
         <option value="contacto">Contáctanos</option>
       </select>
+      <button onClick={clearStorage}>
+        Borrar Storage
+      </button>
     </div>
   )
 }

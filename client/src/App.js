@@ -40,7 +40,6 @@ function App() {
                     <StorePetipanes />
                   </Route>
                 </Route>
-              
             </Switch>
           </BrowserRouter>  
         </PersistGate>

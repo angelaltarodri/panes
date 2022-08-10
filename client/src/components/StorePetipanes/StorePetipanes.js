@@ -33,7 +33,17 @@ export default function StorePetipanes() {
   const nOfPetipanes = Object.values(petipanesOrden[0]).reduce(function(a, b){
     return a + b;
   }, 0);
-
+// ¿un nuevo componente?
+  const [isready, setisready] = useState("")
+  const isReady = () => {
+    return new Promise((resolve, reject) => {
+      cant == nOfPetipanes ? setTimeout(() => resolve('StorePetipanes_cantidad_ready'), 10) : reject('')
+    });
+  }
+  useEffect(()=>{
+    isReady().then(res =>setisready(res)).catch(err=>setisready(err))
+  },[nOfPetipanes])
+//
   const tipEliminarSabores = () => {
     return <>
       Si quiere eliminar un sabor, dé click en la <span style={{backgroundColor: "gold", color: "black", borderLeft: "10px solid gold", borderRight: "10px solid gold"}}> X</span> y vuelva a escoger uno que más le guste.
@@ -53,9 +63,12 @@ export default function StorePetipanes() {
     <div className="StorePetipanes_container">
       <div className="StorePetipanes_botones">
         <StoreTips text={tipNumeroCajas()} titulo={"AumentaCajas"}/>
-        <StorePetipanes_helpButtons cant={cant}/>
+        <StorePetipanes_helpButtons cant={cant}/> 
         <StoreTips text={tipMasCincoUnidades()} titulo={"AumentaCincoUnidades"}/>
-        <StorePetipanes_itemsPlusFive cant={cant}/>
+        {cant == nOfPetipanes ? 
+          null
+          : <StorePetipanes_itemsPlusFive cant={cant}/>
+        }
         {
           nOfPetipanes > 0 ? 
           <StoreTips text={tipEliminarSabores()} titulo={"EliminarSabores"}/>
@@ -90,11 +103,17 @@ export default function StorePetipanes() {
           </div>
         </div>
       </div>
+      {cant == nOfPetipanes ? 
+      <div className={`StorePetipanes_listo ${isready}`}>
+        <div>¿Desea enviar su orden al carrito de compras?</div> 
+        <div className={`btn btn_warning`}>ENVIAR</div>
+      </div>
+      : null}
       {saboresInOrder == "" ? null : 
-        <div>
-          <div> Tu pedido quedaría así: </div>
-          <PetipanSimulator pedido={petipanesOrden[0]} /> 
-        </div>
+      <div>
+        <div className='StorePetipanes_inicioSimulator'> Tu pedido quedaría así: </div>
+        <PetipanSimulator pedido={petipanesOrden[0]} /> 
+      </div>
       }
     </div>
   )
