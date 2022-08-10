@@ -1,16 +1,15 @@
 const initialData = {
-    carrito : [],
-    montos: 0
+    carrito : []
 }
 
-function orderReducer(state = initialData, action){
+function cartReducer(state = initialData, action){
     switch(action.type){
         case 'ADD_CART' : return {
             ...state,
-            carrito: [...action.payload]
+            carrito: [...state.carrito, action.payload]
         }
     }
     return state
 }
 
-export default orderReducer
+export default cartReducer

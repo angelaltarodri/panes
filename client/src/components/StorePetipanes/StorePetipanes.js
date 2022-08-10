@@ -59,6 +59,16 @@ export default function StorePetipanes() {
       Para agregar 5 unidades de un sabor, dé click en <span style={{backgroundColor: "white", color: "black", borderLeft: "10px solid white", borderRight: "10px solid white"}}>+ 5</span>.
     </>
   }
+
+  const enviarPedido = () => {
+    const pedido = {
+      items: petipanesOrden[0],
+      monto: petipanesMonto
+    }
+    dispatch({type:'ADD_CART', payload:pedido})
+    dispatch({type:'ERASE_ORDER'})
+  }
+
   return (
     <div className="StorePetipanes_container">
       <div className="StorePetipanes_botones">
@@ -106,7 +116,7 @@ export default function StorePetipanes() {
       {cant == nOfPetipanes ? 
       <div className={`StorePetipanes_listo ${isready}`}>
         <div>¿Desea enviar su orden al carrito de compras?</div> 
-        <div className={`btn btn_warning`}>ENVIAR</div>
+        <div className={`btn btn_warning`} onClick={enviarPedido}>ENVIAR</div>
       </div>
       : null}
       {saboresInOrder == "" ? null : 
