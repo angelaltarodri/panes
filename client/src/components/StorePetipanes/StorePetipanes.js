@@ -43,7 +43,8 @@ export default function StorePetipanes() {
   useEffect(()=>{
     isReady().then(res =>setisready(res)).catch(err=>setisready(err))
   },[nOfPetipanes])
-//
+
+  // Argumentos de StoreTips, para aparecer en forma de caja
   const tipEliminarSabores = () => {
     return <>
       Si quiere eliminar un sabor, dé click en la <span style={{backgroundColor: "gold", color: "black", borderLeft: "10px solid gold", borderRight: "10px solid gold"}}> X</span> y vuelva a escoger uno que más le guste.
@@ -61,12 +62,16 @@ export default function StorePetipanes() {
   }
 
   const enviarPedido = () => {
+    // enviar al Storage
+    // los items que pide el cliente (sabores de petipanes)
+    // y el monto total.
     const pedido = {
       items: petipanesOrden[0],
       monto: petipanesMonto
     }
     dispatch({type:'ADD_CART', payload:pedido})
     dispatch({type:'ERASE_ORDER'})
+    history.push('/tienda')
   }
 
   return (

@@ -13,7 +13,7 @@ export default function StoreBody() {
             dispatch({type:'ERASE_ORDER'})
         }
         return <Link to={`/tienda/petipanes/${paq.paqueteNumero}`} onClick={changeAmount}>
-            <div className="StoreBody_petipanes-opciones">
+            <div className="StoreBody_petipanes_opciones">
                 {paq.paqueteNumero} petipanes
             </div>
         </Link>
@@ -21,15 +21,13 @@ export default function StoreBody() {
 
     const selectopciones = () => mostraropciones == "none" ? setmostraropciones('block') : setmostraropciones('none')
     return (
-        <div>
+        <div className="StoreBody">
             <div className="StoreBody_cuadro" onClick={selectopciones} >
-                PETIPANES
             </div>
-            <div style={{display: mostraropciones}}>
+            <div style={{display: mostraropciones}} className="StoreBody_petipanes_preopciones">
                 {linksToPaquetes}
             </div>
             <div className="StoreBody_cuadro">
-                CIABATTA
             </div>
         </div>
     )
