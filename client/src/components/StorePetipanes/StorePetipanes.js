@@ -8,6 +8,7 @@ import StorePetipanes_helpButtons from './StorePetipanes_helpButtons';
 import StorePetipanes_itemsOnOrder from './StorePetipanes_itemsOnOrder';
 import StorePetipanes_itemsPlusFive from './StorePetipanes_itemsPlusFive';
 import StoreTips from '../StoreTips/StoreTips';
+import { tipEliminarSabores, tipNumeroCajas, tipMasCincoUnidades} from '../StoreTips/Tips'
 
 export default function StorePetipanes() {
   const dispatch = useDispatch()
@@ -43,23 +44,6 @@ export default function StorePetipanes() {
   useEffect(()=>{
     isReady().then(res =>setisready(res)).catch(err=>setisready(err))
   },[nOfPetipanes])
-
-  // Argumentos de StoreTips, para aparecer en forma de caja
-  const tipEliminarSabores = () => {
-    return <>
-      Si quiere eliminar un sabor, dé click en la <span style={{backgroundColor: "gold", color: "black", borderLeft: "10px solid gold", borderRight: "10px solid gold"}}> X</span> y vuelva a escoger uno que más le guste.
-    </>
-  }
-  const tipNumeroCajas = () => {
-    return <>
-      Si desea aumentar o reducir el N° de cajas, dé click en <span style={{backgroundColor: "royalblue", color: "white", borderLeft: "10px solid royalblue", borderRight: "10px solid royalblue"}}>+</span> o <span style={{backgroundColor: "var(--oak)", color: "white", borderLeft: "10px solid var(--oak)", borderRight: '10px solid var(--oak)'}}>-</span>.
-    </>
-  }
-  const tipMasCincoUnidades = () => {
-    return <>
-      Para agregar 5 unidades de un sabor, dé click en <span style={{backgroundColor: "white", color: "black", borderLeft: "10px solid white", borderRight: "10px solid white"}}>+ 5</span>.
-    </>
-  }
 
   const enviarPedido = () => {
     // enviar al Storage

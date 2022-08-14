@@ -10,6 +10,10 @@ import rootReducer from './reducers/rootReducer'
 import {persistStore, persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import {PersistGate} from 'redux-persist/integration/react'
+import Login from './components/Login/Login';
+import Profile from './components/Profile/Profile';
+import ChooseUsername from './components/ChooseUsername/ChooseUsername';
+import Signout from './components/Signout/Signout';
 
 function App() {
 
@@ -35,6 +39,18 @@ function App() {
                   <StoreNav />
                   <Route path="/tienda" exact >
                     <StoreBody />
+                  </Route>
+                  <Route path="/tienda/login" exact >
+                    <Login />
+                  </Route>
+                  <Route path="/tienda/profile" exact >
+                    <Profile />
+                  </Route>
+                  <Route path="/tienda/choose-username" exact >
+                    <ChooseUsername />
+                  </Route>
+                  <Route path="/tienda/signout" exact >
+                    <Signout />
                   </Route>
                   <Route path="/tienda/petipanes/:cant" >
                     <StorePetipanes />

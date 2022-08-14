@@ -1,4 +1,5 @@
 .StoreBody{
+    margin-top: 20px;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -16,12 +17,16 @@
     /* filter:brightness(60%); */
     /* margin-bottom: 50px; */
 }
-.StoreBody_cuadro:first-child{
+.StoreBody_cuadro_petipanes{
     background-image: url(../Images/petipanes.png);
+    width: 360px;
+    height: 160px;
     background-repeat: no-repeat;
     background-size:cover
 }
-.StoreBody_cuadro:last-child{
+.StoreBody_cuadro_ciabatta{
+    width: 360px;
+    height: 160px;
     background-image: url(../Images/ciabatta.png);
     background-repeat: no-repeat;
     background-size:cover
@@ -31,12 +36,28 @@
 }
 .StoreBody_petipanes_opciones{
     font-family: script;
-    font-size: 20px;
+    font-size: 18px;
     background-color: var(--tomato);
     color: white;
     border-bottom: 2px solid rgba(185, 185, 185, 0.445);
     padding: 20px;
 }
+.StoreBody_petipanes_detalledelivery{
+    font-family: script;
+    font-size: 18px;
+    background-color: var(--oak);
+    color: white;
+    border-bottom: 2px solid rgba(185, 185, 185, 0.445);
+    padding: 10px;
+}
 .StoreBody_petipanes_preopciones{
     width: 360px
+}
+.StoreBody_titulo{
+    background-color: var(--oak);
+    color: white;
+    padding: 15px;
+    box-sizing: border-box;
+    width: 360px;
+    letter-spacing: 10px;
 }
