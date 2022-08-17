@@ -20,7 +20,7 @@ export default function SignOut() {
     onUserLoggedIn={handleUserLoggedIn} 
     onUserNotLoggedIn={handleUserNotLoggedIn} 
     onUserNotRegistered={handleUserNotRegistered}>
-
+      Cerrando sesión...
     </AuthProvider>
   )
 }

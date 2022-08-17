@@ -16,7 +16,6 @@ export default function AuthProvider({
         const isRegistered = await userExists(user.uid);
         if(isRegistered){
           const userInfo = await getUserInfo(user.uid)
-          console.log(userInfo)
           if( userInfo.processCompleted){
             onUserLoggedIn(userInfo)
           } else {

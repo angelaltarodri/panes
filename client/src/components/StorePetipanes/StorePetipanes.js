@@ -50,12 +50,13 @@ export default function StorePetipanes() {
     // los items que pide el cliente (sabores de petipanes)
     // y el monto total.
     const pedido = {
+      asunto: 'petipanes',
       items: petipanesOrden[0],
       monto: petipanesMonto
     }
     dispatch({type:'ADD_CART', payload:pedido})
     dispatch({type:'ERASE_ORDER'})
-    history.push('/tienda')
+    history.push('/tienda/carrito')
   }
 
   return (

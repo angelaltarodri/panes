@@ -17,7 +17,6 @@ export default function Login() {
   5: ya existe el username
   6: nuevo username, click para continuar
   7: username no existe
-  8: el usuario ha iniciado previamente una cuenta con google
   */
 
   const [state, setstate] = useState(0)
@@ -53,8 +52,9 @@ export default function Login() {
         try{
           const res = await signInWithPopup(auth, googleProvider);
           console.log(res)
+          history.push('/tienda/choose-username')
         } catch(e) {
-          setemailerror(`${{...e}.customData.email}`)
+          console.log({...e});
         }
       }
   }
@@ -66,15 +66,12 @@ export default function Login() {
       try{
         const res = await signInWithPopup(auth, facebookProvider);
         console.log(res)
+        history.push('/tienda/choose-username')
       } catch(e) {
         setemailerror(`${{...e}.customData.email}`)
         console.log({...e});
       }
     }
-  }
-
-  async function Test () {
-    
   }
 
   function handleUserLoggedIn(user){ 
@@ -110,7 +107,7 @@ export default function Login() {
     onUserNotRegistered={handleUserNotRegistered}
     onUserNotLoggedIn={handleUserNotLoggedIn}
     >
-      <div>Loading...</div>
+      Cargando...
   </AuthProvider>
 
   // if(state === 2){

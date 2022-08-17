@@ -20,7 +20,6 @@ export const storage = getStorage(app);
 export async function userExists(uid){
   const docRef = doc(db, 'users', uid); //hay dos formas de crear documentos en firebase, una es firebase asignando un id especifico a ese documento, o nosotros podemos especificarle un nombre
   const res = await getDoc(docRef)
-  console.log(res)
   return res.exists()
 }
 

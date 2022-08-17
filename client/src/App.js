@@ -14,6 +14,7 @@ import Login from './components/Login/Login';
 import Profile from './components/Profile/Profile';
 import ChooseUsername from './components/ChooseUsername/ChooseUsername';
 import Signout from './components/Signout/Signout';
+import Cart from './components/Cart/Cart';
 
 function App() {
 
@@ -54,6 +55,9 @@ function App() {
                   </Route>
                   <Route path="/tienda/petipanes/:cant" >
                     <StorePetipanes />
+                  </Route>
+                  <Route path="/tienda/carrito" >
+                    <Cart />
                   </Route>
                 </Route>
             </Switch>

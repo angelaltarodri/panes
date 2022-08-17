@@ -1,16 +1,6 @@
 const initialData = {
     petipanesSabores: [
         {
-            itemType: ["petipanes", "adicional"],
-            itemLongName: "Caja de Petipanes 30x30",
-            itemShortName: "Caja de petipanes",
-            itemMiniName: "Caja de peti.",
-            itemCode: "caja_petipanes",
-            itemBackgroundColor: "white",
-            itemTextColor: "black",
-            itemPriceChange: 0
-        },
-        {
             itemType: ["petipanes", "producto"],
             itemLongName: "Pan con Pollo y Apio",
             itemShortName: "Pollo y apio",

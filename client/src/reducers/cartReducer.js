@@ -8,6 +8,10 @@ function cartReducer(state = initialData, action){
             ...state,
             carrito: [...state.carrito, action.payload]
         }
+        case 'DELETE_PEDIDO' : return {
+            ...state,
+            carrito: state.carrito.filter((item, index) => index != action.payload)
+        }
     }
     return state
 }

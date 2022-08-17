@@ -1,0 +1,192 @@
+.Cart{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+.Cart_tabla{
+    display:flex;
+    flex-direction: column;
+}
+.Cart_carrito_header, .Cart_carrito_fila, .Cart_carrito_footer{
+    /* padding: 5px; */
+    box-sizing: border-box;
+}
+.Cart_carrito_header, .Cart_carrito_footer{
+    background-color: gold;
+    display:flex;
+}
+.Cart_izq, .Cart_med, .Cart_der, .Cart_ultrader, .Cart_med_detalle, .Cart_izq_detalle, .Cart_ultrader_detalle{
+    padding: 10px 6px 10px 6px;
+}
+.Cart_ultraizq{
+    width: 30px;
+    font-size: 24px;
+}
+.Cart_ultraizq_detalle{
+    width: 30px;
+    background-color: var(--oak);
+}
+.Cart_carrito_fila_detalles>div:first-child{
+    border-top: 0.1px solid rgba(128, 128, 128, 0.534);
+}
+.Cart_detalles div{
+    border-bottom: 0.1px solid rgba(128, 128, 128, 0.534);
+}
+.Cart_izq{
+    width:50px;
+}
+.Cart_izq_detalle{
+    width:50px;
+}
+.Cart_med{
+    width:140px;
+}
+.Cart_med_detalle{
+    width: 202px;
+    text-align: start;
+}
+.Cart_der{
+    width:50px;
+}
+.Cart_ultrader{
+    width:30px;
+}
+.Cart_detalles{
+    background-color: white;
+}
+.Cart_ultrader_detalle{
+    width:30px;
+    background-color: var(--oak)
+}
+.Cart_carrito_footer:last-child{
+    border-radius: 0 0 10px 10px;
+}
+.Cart_carrito_fila{
+    background-color: white;
+    display:flex;
+}
+
+.Cart_carrito_fila_vacia{
+    background-color: var(--oak);
+    color: white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.Cart_carrito_fila_vacia > div {
+    width: 60%;
+}
+.Cart_carrito_fila>div:first-child{
+    background-color:green;
+    color: white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.Cart_carrito_fila>div:last-child{
+    background-color: var(--tomato);
+    color: white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.Cart_volver{
+    height: 40px;
+    color: white;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    margin-top: 0;
+}
+.Cart_volver>div:first-child{
+    width: 30%;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 0px 0px 10PX;
+    background-color: var(--oak)
+}
+.Cart_volver>div:last-child{
+    height: 100%;
+    width: 70%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 10px 10px 0PX;
+    background-color: var(--tomato);
+}
+.Cart_carrito_fila_detalles{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.Cart_carrito_fila_detalles>div{
+    display:flex;
+}
+.Cart_carrito_fila_detalles>div:last-child{
+    border-bottom: none;
+}
+.Cart_titulo{
+    margin: 10px 10px 0px 10px;
+    border-radius: 10px 10px 0 0;
+    box-sizing: border-box;
+    padding: 7px 5px 7px 5px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var( --oak);
+    color: white;
+}
+.Cart_cuadro{
+    /* background-color: var(--tomato); */
+    background-color: gold;
+    border-radius: 0 0 10px 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    /* color: white; */
+}
+.Cart_carrito_fila_vacia, .Cart_cuadro, .Cart_volver, .Cart_titulo{
+    width: 348px !important;
+}
+.Cart_cuadro_column{
+    flex-direction: column;
+}
+.Cart_input_select, .Cart_input_text, .Cart_input_date, .Cart_input_time, .Cart_input_textarea{
+    font-family: sans;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    margin: 5px;
+}
+.Cart_input_select{
+    width: 300px;
+}
+.Cart_input_text{
+    width: 290px 
+}
+.Cart_input_date{
+    width: 120px;
+}
+.Cart_input_time{
+    width: 80px;
+}
+.Cart_subcuadro{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 310px;
+}
+.Cart_input_textarea{
+    width:290px;
+}
