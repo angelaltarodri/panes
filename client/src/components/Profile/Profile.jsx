@@ -1,24 +1,24 @@
 import React from 'react'
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import AuthProvider from '../AuthProviver/AuthProvider';
 import './Profile.css'
 export default function Profile() {
   const [currentUser, setCurrentUser] = useState({});
   const [state, setState] = useState(0);
-  const history = useHistory()
+  const navigate = useNavigate()
   const gologout = () => {
-    history.push('/tienda/signout')
+    navigate('/tienda/signout')
   }
   async function handleUserLoggedIn(user){
     setCurrentUser(user)
     setState(2)
   }
   function handleUserNotRegistered(user){
-    history.push('/tienda/login')
+    navigate('/tienda/login')
   }
   function handleUserNotLoggedIn(){
-    history.push('/tienda/login')
+    navigate('/tienda/login')
   }
 
   if(state==0){

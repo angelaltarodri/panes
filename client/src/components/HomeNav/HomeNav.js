@@ -1,13 +1,19 @@
 import React from 'react'
 import './HomeNav.css'
-import{useHistory} from "react-router-dom";
+import{useNavigate} from "react-router-dom";
+import { useEffect } from 'react';
 
 export default function HomeNav() {
-  const history = useHistory()
+  const navigate = useNavigate()
+
+  // useEffect(()=>{
+  //   navigate('/tienda')
+  // },[])
+
   const gopage = () => {
     let option_value = document.getElementsByName("menu")[0].value
     if(option_value == "tienda"){
-      history.push("/tienda")
+      navigate("/tienda")
     }
   }
 

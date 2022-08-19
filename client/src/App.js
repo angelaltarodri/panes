@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Routes, Outlet} from 'react-router-dom';
 import HomeNav from './components/HomeNav/HomeNav';
 import StoreNav from './components/StoreNav/StoreNav';
 import StoreBody from './components/StoreBody/StoreBody';
@@ -22,45 +22,34 @@ function App() {
     key: 'root',
     storage
   }
-
   const persistedReducer = persistReducer(persistConfig, rootReducer)
   const store = createStore(persistedReducer)
   const persistor = persistStore(store)
+
+  const Store = () => {
+    return <div>
+      <StoreNav/>
+      <Outlet/>
+    </div>
+  }
 
   return (
     <div className="App">
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <BrowserRouter>
-            <Switch>
-                <Route path="/" exact >
-                  <HomeNav />
+            <Routes>
+                <Route path="" element={<HomeNav/>}></Route>
+                <Route path="tienda" element={<Store/>}>
+                  <Route path="" element={<StoreBody/>}/>
+                  <Route path="login" element={<Login/>}/>
+                  <Route path="carrito" element={<Cart />}/>
+                  <Route path="profile" element={<Profile/>}/>
+                  <Route path="choose-username" element={<ChooseUsername/>}/>
+                  <Route path="signout" element={<Signout/>}/>
+                  <Route path="petipanes/:cant" element={<StorePetipanes/>}/>
                 </Route>
-                <Route path="/tienda" >
-                  <StoreNav />
-                  <Route path="/tienda" exact >
-                    <StoreBody />
-                  </Route>
-                  <Route path="/tienda/login" exact >
-                    <Login />
-                  </Route>
-                  <Route path="/tienda/profile" exact >
-                    <Profile />
-                  </Route>
-                  <Route path="/tienda/choose-username" exact >
-                    <ChooseUsername />
-                  </Route>
-                  <Route path="/tienda/signout" exact >
-                    <Signout />
-                  </Route>
-                  <Route path="/tienda/petipanes/:cant" >
-                    <StorePetipanes />
-                  </Route>
-                  <Route path="/tienda/carrito" >
-                    <Cart />
-                  </Route>
-                </Route>
-            </Switch>
+            </Routes>
           </BrowserRouter>  
         </PersistGate>
       </Provider>    

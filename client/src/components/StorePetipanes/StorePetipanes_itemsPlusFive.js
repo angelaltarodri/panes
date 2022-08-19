@@ -9,7 +9,7 @@ export default function StorePetipanes_itemsPlusFive({cant}) {
         return a + b;
     }, 0);
     
-    const itemsPlusFive = sabores.map(item=> {
+    const itemsPlusFive = sabores.map((item, index)=> {
         const addToCart = () => {
             if (cant != nOfPetipanes){
                 petipanesOrden[0][item.itemCode] ? petipanesOrden[0][item.itemCode] += 5 : petipanesOrden[0][item.itemCode] = 5
@@ -21,7 +21,7 @@ export default function StorePetipanes_itemsPlusFive({cant}) {
             }
         }
         if(!item.itemType.includes("adicional"))
-        return <div className="StorePetipanes_opciones" onClick={addToCart} style={{backgroundColor:item.itemBackgroundColor, color:item.itemTextColor}}>
+        return <div className="StorePetipanes_opciones" onClick={addToCart} style={{backgroundColor:item.itemBackgroundColor, color:item.itemTextColor}} key={index}>
             <div>
                 <div> + 5 </div>
                 <div> 

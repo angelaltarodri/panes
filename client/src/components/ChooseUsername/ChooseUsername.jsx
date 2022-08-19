@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory, Link} from 'react-router-dom'
+import { useNavigate, Link} from 'react-router-dom'
 import { existsUsername, updateUser } from '../../firebase/firebase'
 import AuthProvider from '../AuthProviver/AuthProvider'
 
@@ -7,16 +7,16 @@ export default function ChooseUsername() {
   const [state, setstate] = useState(0)
   const [currentUser, setcurrentUser] = useState(null)
   const [username, setusername] = useState("")
-  const history = useHistory()
+  const navigate = useNavigate()
   function handleUserLoggedIn(user){ 
-    history.push('/tienda/profile')
+    navigate('/tienda/profile')
   }
   function handleUserNotRegistered(user){
     setcurrentUser(user)
     setstate(3)
   }
   function handleUserNotLoggedIn(){
-    history.push('/tienda/login')
+    navigate('/tienda/login')
   }
 
   async function handleContinue() {
@@ -29,7 +29,7 @@ export default function ChooseUsername() {
         tmp.username = username;
         tmp.processCompleted = true;
         await updateUser(tmp)
-        history.push('/tienda/profile')
+        navigate('/tienda/profile')
       }
     }
   }
@@ -55,7 +55,7 @@ export default function ChooseUsername() {
     onUserNotRegistered={handleUserNotRegistered}
     onUserNotLoggedIn={handleUserNotLoggedIn}
     >
-      <div>Loading...</div>
+      <div>Cargando...</div>
     </AuthProvider>
   )
 }

@@ -1,12 +1,40 @@
-import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, fetchSignInMethodsForEmail, signInWithCredential, FacebookAuthProvider } from 'firebase/auth';
-import React, { useEffect, useState } from 'react'
+import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword,  FacebookAuthProvider } from 'firebase/auth';
+import React, { useEffect, useRef, useState } from 'react'
 import { auth, userExists } from '../../firebase/firebase'
-import {useHistory} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import AuthProvider from '../AuthProviver/AuthProvider';
 import './Login.css'
+import google from '../Images/google.png'
+import facebook from '../Images/facebook.png'
 export default function Login() {
-  const history = useHistory()
-  // const [currentUser, setcurrentUser] = useState(null)
+  const navigate = useNavigate()
+  const [state, setstate] = useState(0)
+  const [email, setemail] = useState('')
+  const [password, setpassword] = useState('')
+  const [emailerror, setemailerror] = useState('')
+  const [cargando, setcargando] = useState(false)
+  const [login, setlogin] = useState(0)
+
+  async function signUp(e){
+    try {
+      e.preventDefault()
+      await createUserWithEmailAndPassword(auth, email.toLowerCase(), password)
+      await setstate(0) //debe ir despues para que funcione los values
+      // await navigate('/tienda/choose-username')
+    } catch (error) {
+      console.log({...error})
+    }
+  }
+  async function signIn(e){
+    try {
+      e.preventDefault()
+      await signInWithEmailAndPassword(auth, email.toLowerCase(), password)
+      await setstate(0)
+      // await navigate('/tienda/choose-username')
+    } catch (error) {
+      console.log({...error})
+    }
+  }
   /*
   State:
   0: inicializando
@@ -19,31 +47,6 @@ export default function Login() {
   7: username no existe
   */
 
-  const [state, setstate] = useState(0)
-  const [emailerror, setemailerror] = useState('')
-
-  // useEffect(()=>{
-  //   setstate(1)
-  //   onAuthStateChanged(auth, async (user) => {
-  //     if(user){
-  //       const isRegistered = await userExists(user.uid)
-  //       if(isRegistered){
-  //         // to do: redirigir al dashboard
-  //         history.push('/tienda/dashboard')
-  //         setstate(2)
-  //       } else {
-  //         // to do: redirigir a a choose-username
-  //         history.push('/tienda/choose-username')
-  //         setstate(3)
-  //       }
-        
-  //     } else {
-  //       setstate(4)
-  //       console.log('No hay nadie autenticado...')
-  //     }
-  //   })
-  // },[history])
-
   async function handleOnClickGoogle(){
       const googleProvider = new GoogleAuthProvider();
       await signInWithGoogle(googleProvider)
@@ -51,8 +54,7 @@ export default function Login() {
       async function signInWithGoogle(googleProvider) {
         try{
           const res = await signInWithPopup(auth, googleProvider);
-          console.log(res)
-          history.push('/tienda/choose-username')
+          navigate('/tienda/choose-username')
         } catch(e) {
           console.log({...e});
         }
@@ -66,7 +68,7 @@ export default function Login() {
       try{
         const res = await signInWithPopup(auth, facebookProvider);
         console.log(res)
-        history.push('/tienda/choose-username')
+        navigate('/tienda/choose-username')
       } catch(e) {
         setemailerror(`${{...e}.customData.email}`)
         console.log({...e});
@@ -74,11 +76,24 @@ export default function Login() {
     }
   }
 
+  function changeLoginState(e){
+    const id = e.target.id
+    if (id=="login") {
+      if( login === 0 ) setlogin(1)
+      if( login === 1 ) setlogin(0)
+      if( login === 3 ) setlogin(1)
+    } else {
+      if( login === 0 ) setlogin(3)
+      if( login === 3 ) setlogin(0)
+      if( login === 1 ) setlogin(3)
+    }
+  }
+
   function handleUserLoggedIn(user){ 
-    history.push('/tienda/profile')
+    navigate('/tienda/profile')
   }
   function handleUserNotRegistered(user){
-    history.push('/tienda/choose-username')
+    navigate('/tienda/choose-username')
   }
   function handleUserNotLoggedIn(){
     setstate(4)
@@ -87,8 +102,32 @@ export default function Login() {
   if(state === 4){
     return <div className='Login'>
       <div className="Login_buttons">
-          <div onClick={handleOnClickGoogle} className="btn btn_tomato">Iniciar sesión con Google</div>  
-          <div onClick={handleOnClickFacebook} className="btn btn_blue">Iniciar sesión con Facebook</div>  
+          <div>Iniciar sesión</div>
+          <div onClick={handleOnClickGoogle} className="btn_login google">
+            <img src={google} alt="" height="25px" style={{margin:'0px 20px 0px 20px'}}/>
+            Continuar con Google
+          </div>  
+          <div onClick={handleOnClickFacebook} className="btn_login facebook">
+            <img src={facebook} alt="" height="28px" style={{margin:'0px 18px 0px 20px'}}/>
+            Continuar con Facebook
+          </div>  
+          o
+          <div className={`btn_login login_normal ${login == 1? "login_normal_active" : ""}`} onClick={(e)=>changeLoginState(e)} id="login">Iniciar sesión</div>
+          <div style={{display:`${login==1 ? "flex" : "none"}`}} className="btn_login_table">
+            <div className="login_table_body">
+              <input value={email} onChange={(e)=>{setemail(e.target.value)}} type="email" className="Cart_input_text" placeholder="e-mail"/> <br />
+              <input value={password} onChange={(e)=>{setpassword(e.target.value)}} type="password" className="Cart_input_text" placeholder="contraseña"/>
+            </div>
+            <div className="btn_login login_normal login_normal_bottom" onClick={signIn}>Entrar</div>
+          </div>
+          <div className={`btn_login login_register ${login == 3? "register_normal_active" : ""}`} onClick={(e)=>changeLoginState(e)} id="register">Crear una cuenta</div>
+          <div style={{display:`${login==3 ? "flex" : "none"}`}} className="btn_login_table">
+            <div className="login_table_body">
+              <input value={email} onChange={(e)=>{setemail(e.target.value)}} type="email" className="Cart_input_text" placeholder="e-mail"/> <br />
+              <input value={password} onChange={(e)=>{setpassword(e.target.value)}} type="password" className="Cart_input_text" placeholder="contraseña"/>
+            </div>
+            <div className="btn_login login_normal register_normal_bottom" onClick={signUp}>Registrar</div>
+          </div>
       </div>
       { 
       emailerror != '' ? 
@@ -98,6 +137,13 @@ export default function Login() {
         </div>
       </div>
       : null
+      }
+      {
+      cargando ? 
+      <div>
+        Cargando...
+      </div>
+      :null
       }
     </div>
   }
@@ -109,19 +155,4 @@ export default function Login() {
     >
       Cargando...
   </AuthProvider>
-
-  // if(state === 2){
-  //   return <div>
-  //     Esta autenticado y registrado
-  //   </div>
-  // }
-
-  // if(state === 3){
-  //   return <div>
-  //     Esta autenticado pero no registrado
-  //   </div>
-  // }
-  // return <div>
-  //   Loading...
-  // </div>
 }

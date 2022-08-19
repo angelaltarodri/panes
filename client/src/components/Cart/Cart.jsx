@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import './Cart.css'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import CartTabla from './CartTabla'
 import DescripcionExacta from '../DescripcionExacta/DescripcionExacta';
 export default function Cart() {
   const carrito = useSelector(store => store.cartReducer.carrito) 
-  const history = useHistory()
-  const gohome = () => history.push("/tienda")
+  const navigate = useNavigate()
+  const gohome = () => navigate("/tienda")
   const [fecha, setfecha] = useState('2022-12-01')
   const [hora, sethora] = useState('16:30')
   const [direccion, setdireccion] = useState('Calle Los Girasoles 197')

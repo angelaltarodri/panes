@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import{ useParams, useHistory } from "react-router-dom";
+import{ useParams, useNavigate } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux'
 import "./StorePetipanes.css"
 import "../StoreTips/StoreTips.css"
@@ -12,7 +12,7 @@ import { tipEliminarSabores, tipNumeroCajas, tipMasCincoUnidades} from '../Store
 
 export default function StorePetipanes() {
   const dispatch = useDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
   const {cant} = useParams()
   const petipanesOrden = useSelector(store => store.orderReducer.petipanesOrden) 
   const paquetes = useSelector(store => store.itemsReducer.petipanesPaquetes)  
@@ -20,7 +20,7 @@ export default function StorePetipanes() {
 
   useEffect(()=>{
     if(cant%25 !== 0 || cant > 100){
-      history.push("/tienda")
+      navigate("/tienda")
     }
     if (petipanesMonto == 0){
       const montoElegido = paquetes.find(paquete => paquete.paqueteNumero == cant).paquetePrecio
@@ -56,7 +56,7 @@ export default function StorePetipanes() {
     }
     dispatch({type:'ADD_CART', payload:pedido})
     dispatch({type:'ERASE_ORDER'})
-    history.push('/tienda/carrito')
+    navigate('/tienda/carrito')
   }
 
   return (

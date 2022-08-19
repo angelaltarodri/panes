@@ -1,10 +1,10 @@
 import React from 'react'
-import{useHistory} from "react-router-dom";
+import{useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux'
 export default function StorePetipanes_helpButtons({cant}) {
     const dispatch = useDispatch()
-    const history = useHistory()  
-    const gohome = () => history.push("/tienda")    
+    const navigate = useNavigate()  
+    const gohome = () => navigate("/tienda")    
     const paquetes = useSelector(store => store.itemsReducer.petipanesPaquetes)  
     const petipanesMonto = useSelector(store => store.orderReducer.petipanesMonto) 
     const addCajaPetipanes = (amount) => {
@@ -20,7 +20,7 @@ export default function StorePetipanes_helpButtons({cant}) {
         }
         dispatch({type:'AMOUNT_PETIPANES', payload: nuevoprecio()})
         dispatch({type:'ERASE_ORDER'})
-        history.push(`/tienda/petipanes/${ ncant == 0 ? "25" : ncant }`)
+        navigate(`/tienda/petipanes/${ ncant == 0 ? "25" : ncant }`)
     }
     return (
         <div className="StorePetipanes_helpButtons">

@@ -1,18 +1,19 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { logOut } from '../../firebase/firebase'
 import AuthProvider from '../AuthProviver/AuthProvider'
 
 export default function SignOut() {
-  const history = useHistory()
+  const navigate = useNavigate()
   async function handleUserLoggedIn(user){
     await logOut()
+    await navigate(0)
   }
-  function handleUserNotRegistered(user){
-    history.push('/tienda/login')
+  async function handleUserNotRegistered(user){
+    await navigate('/tienda/login')
   }
-  function handleUserNotLoggedIn(){
-    history.push('/tienda/login')
+  async function handleUserNotLoggedIn(){
+    await navigate('/tienda/login')
   }
 
   return (
