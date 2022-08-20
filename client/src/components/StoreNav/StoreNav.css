@@ -40,7 +40,7 @@
     align-items: center;
 }
 
-.StoreNav_titles div:hover, .StoreNav>div:first-child:hover{
+.StoreNav_titles>div:hover, .StoreNav>div:first-child:hover{
     background-color: white;
     cursor:pointer;
     color: var(--oak);

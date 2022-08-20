@@ -1,0 +1,17 @@
+.ChooseUsername{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.ChooseUsername_inputs{
+    background-color: gold;
+    width: 348px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 0 0 10px 10px;
+}

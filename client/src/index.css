@@ -20,10 +20,16 @@ a{
   text-decoration: none;
   color: inherit;
 }
-
+*{
+  transition: background-color 1500ms;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.cart_ready{
+  background-color: green;
+  color: white;
 }
 input{
   font-size: 15px;
@@ -122,4 +128,25 @@ select{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.mess{
+  width: 348px;
+  background-color: rgba(255, 0, 0, 0.658);
+  border-radius:10px;
+  margin: 5px;
+  color: white;
+  padding:5px;
+  box-sizing: border-box;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
 }

@@ -176,7 +176,7 @@
     width: 290px 
 }
 .Cart_input_date{
-    width: 120px;
+    width: 140px;
 }
 .Cart_input_time{
     width: 80px;
@@ -189,4 +189,14 @@
 }
 .Cart_input_textarea{
     width:290px;
+}
+.Cart_input_celular{
+    width: 290px;
+    padding: 10px;
+    box-sizing: border-box;
+    letter-spacing: 7px;
+    font-size: 30px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
 }

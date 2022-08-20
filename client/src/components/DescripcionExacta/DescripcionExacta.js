@@ -1,4 +1,4 @@
-export default function DescripcionExacta(fecha, hora, direccion, distrito) {
+export default function DescripcionExacta({fecha, hora, direccion, distrito}) {
     const dias = [
         'lunes',
         'martes',
@@ -44,5 +44,5 @@ export default function DescripcionExacta(fecha, hora, direccion, distrito) {
         }
         return nvaHora
     }
-    return `Entrega programada para el ${dia} ${numDia()} de ${meses[mes-1]} del ${elemFecha[0]} en ${direccion} del distrito de ${distrito} a las ${nvaHora()}.`
+    return <textarea name="" id="" cols="27" rows="5" className='Cart_input_textarea' readOnly="readonly" style={{backgroundColor:'green', color:'white'}} value={`Entrega programada para el ${dia} ${numDia()} de ${meses[mes-1]} del ${elemFecha[0]} en ${direccion} del distrito de ${distrito} a las ${nvaHora()}.`} />
 }

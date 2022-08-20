@@ -14,25 +14,42 @@ export default function Login() {
   const [emailerror, setemailerror] = useState('')
   const [cargando, setcargando] = useState(false)
   const [login, setlogin] = useState(0)
-
+  const [errorMessages, seterrorMessages] = useState([])
+  const errores = errorMessages.map((mess, index)=><div key={index} className="mess"> {`${mess}`}</div>)
   async function signUp(e){
+    seterrorMessages([])
+    let newErrorMessages = []
+    let pass = true
     try {
       e.preventDefault()
       await createUserWithEmailAndPassword(auth, email.toLowerCase(), password)
-      await setstate(0) //debe ir despues para que funcione los values
-      // await navigate('/tienda/choose-username')
+      await setstate(0)
     } catch (error) {
       console.log({...error})
+      if({...error}.code==="auth/weak-password"){
+        newErrorMessages.push("La contraseña debe tener al menos 6 digitos.")
+        seterrorMessages(newErrorMessages)
+      }
     }
   }
   async function signIn(e){
+    seterrorMessages([])
+    let newErrorMessages = []
+    let pass = true
     try {
       e.preventDefault()
       await signInWithEmailAndPassword(auth, email.toLowerCase(), password)
       await setstate(0)
-      // await navigate('/tienda/choose-username')
     } catch (error) {
       console.log({...error})
+      if({...error}.code==="auth/user-not-found"){
+        newErrorMessages.push("La cuenta no ha sido registrada aún.")
+        seterrorMessages(newErrorMessages)
+      }
+      if({...error}.code==="auth/wrong-password"){
+        newErrorMessages.push("La contraseña es incorrecta.")
+        seterrorMessages(newErrorMessages)
+      }
     }
   }
   /*
@@ -102,32 +119,32 @@ export default function Login() {
   if(state === 4){
     return <div className='Login'>
       <div className="Login_buttons">
-          <div>Iniciar sesión</div>
-          <div onClick={handleOnClickGoogle} className="btn_login google">
-            <img src={google} alt="" height="25px" style={{margin:'0px 20px 0px 20px'}}/>
-            Continuar con Google
-          </div>  
-          <div onClick={handleOnClickFacebook} className="btn_login facebook">
-            <img src={facebook} alt="" height="28px" style={{margin:'0px 18px 0px 20px'}}/>
-            Continuar con Facebook
-          </div>  
-          o
-          <div className={`btn_login login_normal ${login == 1? "login_normal_active" : ""}`} onClick={(e)=>changeLoginState(e)} id="login">Iniciar sesión</div>
-          <div style={{display:`${login==1 ? "flex" : "none"}`}} className="btn_login_table">
-            <div className="login_table_body">
-              <input value={email} onChange={(e)=>{setemail(e.target.value)}} type="email" className="Cart_input_text" placeholder="e-mail"/> <br />
-              <input value={password} onChange={(e)=>{setpassword(e.target.value)}} type="password" className="Cart_input_text" placeholder="contraseña"/>
-            </div>
-            <div className="btn_login login_normal login_normal_bottom" onClick={signIn}>Entrar</div>
+        <div className="StoreBody_titulo">INICIAR SESIÓN</div> <br />
+        <div onClick={handleOnClickGoogle} className="btn_login google">
+          <img src={google} alt="" height="25px" style={{margin:'0px 20px 0px 20px'}}/>
+          Continuar con Google
+        </div>  
+        <div onClick={handleOnClickFacebook} className="btn_login facebook">
+          <img src={facebook} alt="" height="28px" style={{margin:'0px 18px 0px 20px'}}/>
+          Continuar con Facebook
+        </div>  
+        o
+        <div className={`btn_login login_normal ${login == 1? "login_normal_active" : ""}`} onClick={(e)=>changeLoginState(e)} id="login">Iniciar sesión</div>
+        <div style={{display:`${login==1 ? "flex" : "none"}`}} className="btn_login_table">
+          <div className="login_table_body">
+            <input value={email} onChange={(e)=>{setemail(e.target.value)}} type="email" className="Cart_input_text" placeholder="e-mail"/> <br />
+            <input value={password} onChange={(e)=>{setpassword(e.target.value)}} type="password" className="Cart_input_text" placeholder="contraseña"/>
           </div>
-          <div className={`btn_login login_register ${login == 3? "register_normal_active" : ""}`} onClick={(e)=>changeLoginState(e)} id="register">Crear una cuenta</div>
-          <div style={{display:`${login==3 ? "flex" : "none"}`}} className="btn_login_table">
-            <div className="login_table_body">
-              <input value={email} onChange={(e)=>{setemail(e.target.value)}} type="email" className="Cart_input_text" placeholder="e-mail"/> <br />
-              <input value={password} onChange={(e)=>{setpassword(e.target.value)}} type="password" className="Cart_input_text" placeholder="contraseña"/>
-            </div>
-            <div className="btn_login login_normal register_normal_bottom" onClick={signUp}>Registrar</div>
+          <div className="btn_login login_normal login_normal_bottom" onClick={signIn}>Entrar</div>
+        </div>
+        <div className={`btn_login login_register ${login == 3? "register_normal_active" : ""}`} onClick={(e)=>changeLoginState(e)} id="register">Crear una cuenta</div>
+        <div style={{display:`${login==3 ? "flex" : "none"}`}} className="btn_login_table">
+          <div className="login_table_body">
+            <input value={email} onChange={(e)=>{setemail(e.target.value)}} type="email" className="Cart_input_text" placeholder="e-mail"/> <br />
+            <input value={password} onChange={(e)=>{setpassword(e.target.value)}} type="password" className="Cart_input_text" placeholder="contraseña"/>
           </div>
+          <div className="btn_login login_normal register_normal_bottom" onClick={signUp}>Registrar</div>
+        </div>
       </div>
       { 
       emailerror != '' ? 
@@ -138,6 +155,7 @@ export default function Login() {
       </div>
       : null
       }
+      {errores}
       {
       cargando ? 
       <div>
