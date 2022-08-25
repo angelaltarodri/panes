@@ -169,19 +169,18 @@
     width: 120px;
 }
 .StorePetipanes_helpButtons > div:nth-child(2) > div:first-child div:nth-child(2){
-    background-color:royalblue;
+    background-color: var(--oak);
     height: 30px;
     width: 40px;
     color: white;
 }
 .StorePetipanes_helpButtons > div:nth-child(2) > div:first-child div:nth-child(3){
-    background-color: var(--oak);
+    background-color:royalblue;
     height: 30px;
     width: 40px;
     color: white;
     border-radius: 0px 10px 0px 0px;
 }
-
 .StorePetipanes_helpButtons > div:nth-child(2) > div:nth-child(2){
     background-color:var(--tomato);
     height: 30px;

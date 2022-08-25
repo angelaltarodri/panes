@@ -1,0 +1,16 @@
+.HomeBody{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.HomeBody_imgprincipal{
+    width: 348px;
+}
+.HomeBody_cuadro{
+    width: 348px;
+    background-color: var(--tomato);
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+}

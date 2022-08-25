@@ -10,10 +10,10 @@ export default function SignOut() {
     await navigate(0)
   }
   async function handleUserNotRegistered(user){
-    await navigate('/tienda/login')
+    await navigate('/login')
   }
   async function handleUserNotLoggedIn(){
-    await navigate('/tienda/login')
+    await navigate('/login')
   }
 
   return (

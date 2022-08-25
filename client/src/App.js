@@ -15,6 +15,7 @@ import Profile from './components/Profile/Profile';
 import ChooseUsername from './components/ChooseUsername/ChooseUsername';
 import Signout from './components/Signout/Signout';
 import Cart from './components/Cart/Cart';
+import HomeBody from './components/HomeBody/HomeBody';
 
 function App() {
 
@@ -32,6 +33,12 @@ function App() {
       <Outlet/>
     </div>
   }
+  const Home = () => {
+    return <div>
+      {/* <HomeNav/> */}
+      <Outlet/>
+    </div>
+  }
 
   return (
     <div className="App">
@@ -39,8 +46,7 @@ function App() {
         <PersistGate persistor={persistor}>
           <BrowserRouter>
             <Routes>
-                <Route path="" element={<HomeNav/>}></Route>
-                <Route path="tienda" element={<Store/>}>
+                <Route path="" element={<Store/>}>
                   <Route path="" element={<StoreBody/>}/>
                   <Route path="login" element={<Login/>}/>
                   <Route path="carrito" element={<Cart />}/>

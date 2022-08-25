@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux'
 export default function StorePetipanes_helpButtons({cant}) {
     const dispatch = useDispatch()
     const navigate = useNavigate()  
-    const gohome = () => navigate("/tienda")    
+    const gohome = () => navigate("/")    
     const paquetes = useSelector(store => store.itemsReducer.petipanesPaquetes)  
     const petipanesMonto = useSelector(store => store.orderReducer.petipanesMonto) 
     const addCajaPetipanes = (amount) => {
@@ -20,7 +20,7 @@ export default function StorePetipanes_helpButtons({cant}) {
         }
         dispatch({type:'AMOUNT_PETIPANES', payload: nuevoprecio()})
         dispatch({type:'ERASE_ORDER'})
-        navigate(`/tienda/petipanes/${ ncant == 0 ? "25" : ncant }`)
+        navigate(`/petipanes/${ ncant == 0 ? "25" : ncant }`)
     }
     return (
         <div className="StorePetipanes_helpButtons">
@@ -30,11 +30,11 @@ export default function StorePetipanes_helpButtons({cant}) {
                 <div className="StorePetipanes_">
                     {cant/25} {cant/25 == 1 ? "caja" : "cajas"}
                 </div>
-                <div className="StorePetipanes_" onClick={()=>addCajaPetipanes(25)}>
-                    +
-                </div>
                 <div className="StorePetipanes_" onClick={()=>addCajaPetipanes(-25)}>
                     -
+                </div>
+                <div className="StorePetipanes_" onClick={()=>addCajaPetipanes(25)}>
+                    +
                 </div>
                 </div>
                 <div>

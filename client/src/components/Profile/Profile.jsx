@@ -8,17 +8,17 @@ export default function Profile() {
   const [state, setState] = useState(0);
   const navigate = useNavigate()
   const gologout = () => {
-    navigate('/tienda/signout')
+    navigate('/signout')
   }
   async function handleUserLoggedIn(user){
     setCurrentUser(user)
     setState(2)
   }
   function handleUserNotRegistered(user){
-    navigate('/tienda/login')
+    navigate('/login')
   }
   function handleUserNotLoggedIn(){
-    navigate('/tienda/login')
+    navigate('/login')
   }
 
   if(state==0){

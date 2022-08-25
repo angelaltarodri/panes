@@ -5,5 +5,5 @@ export const sumaMontos = () => {
     for (let i = 0; i < carrito.length; i++) {
         suma += carrito[i].monto
     }
-    return suma
+    return suma.toString()
 }

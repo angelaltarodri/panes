@@ -20,7 +20,7 @@ export default function StorePetipanes() {
 
   useEffect(()=>{
     if(cant%25 !== 0 || cant > 100){
-      navigate("/tienda")
+      navigate("/")
     }
     if (petipanesMonto == 0){
       const montoElegido = paquetes.find(paquete => paquete.paqueteNumero == cant).paquetePrecio
@@ -56,7 +56,7 @@ export default function StorePetipanes() {
     }
     dispatch({type:'ADD_CART', payload:pedido})
     dispatch({type:'ERASE_ORDER'})
-    navigate('/tienda/carrito')
+    navigate('/carrito')
   }
 
   return (

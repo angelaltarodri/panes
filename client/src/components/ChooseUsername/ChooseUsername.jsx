@@ -12,14 +12,14 @@ export default function ChooseUsername() {
   const [errorMessages, seterrorMessages] = useState([])
   const navigate = useNavigate()
   function handleUserLoggedIn(user){ 
-    navigate('/tienda/profile')
+    navigate('/profile')
   }
   function handleUserNotRegistered(user){
     setcurrentUser(user)
     setstate(3)
   }
   function handleUserNotLoggedIn(){
-    navigate('/tienda/login')
+    navigate('/login')
   }
 
   async function handleContinue() {
@@ -48,7 +48,7 @@ export default function ChooseUsername() {
         tmp.celular = celular;
         tmp.processCompleted = true;
         await updateUser(tmp)
-        navigate('/tienda/profile')
+        navigate('/profile')
       } catch (error) {
         console.log({...error})
       }

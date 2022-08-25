@@ -8,8 +8,8 @@ export default function StoreNav() {
     const carrito = useSelector(store => store.cartReducer.carrito) 
     const navigate = useNavigate()    
     const gohome = () => navigate("/")
-    const goUser = () => navigate("/tienda/login")
-    const goCart = () => navigate("/tienda/carrito")
+    const goUser = () => navigate("/login")
+    const goCart = () => navigate("/carrito")
     const sumaMonto = sumaMontos()
     return (    
         <div className="StoreNav_container">

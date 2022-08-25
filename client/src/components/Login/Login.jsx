@@ -11,7 +11,6 @@ export default function Login() {
   const [state, setstate] = useState(0)
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
-  const [emailerror, setemailerror] = useState('')
   const [cargando, setcargando] = useState(false)
   const [login, setlogin] = useState(0)
   const [errorMessages, seterrorMessages] = useState([])
@@ -71,23 +70,25 @@ export default function Login() {
       async function signInWithGoogle(googleProvider) {
         try{
           const res = await signInWithPopup(auth, googleProvider);
-          navigate('/tienda/choose-username')
+          navigate('/choose-username')
         } catch(e) {
           console.log({...e});
         }
       }
   }
   async function handleOnClickFacebook(){
+    seterrorMessages([])
+    let newErrorMessages = []
     const facebookProvider = new FacebookAuthProvider();
     await signInWithFacebook(facebookProvider)
-
     async function signInWithFacebook(facebookProvider) {
       try{
         const res = await signInWithPopup(auth, facebookProvider);
         console.log(res)
-        navigate('/tienda/choose-username')
+        navigate('/choose-username')
       } catch(e) {
-        setemailerror(`${{...e}.customData.email}`)
+        newErrorMessages.push(`Su cuenta ${{...e}.customData.email} ha sido previamente iniciada con Google. Por favor, dé click en Continuar con Google`)
+        seterrorMessages(newErrorMessages)
         console.log({...e});
       }
     }
@@ -107,10 +108,10 @@ export default function Login() {
   }
 
   function handleUserLoggedIn(user){ 
-    navigate('/tienda/profile')
+    navigate('/profile')
   }
   function handleUserNotRegistered(user){
-    navigate('/tienda/choose-username')
+    navigate('/choose-username')
   }
   function handleUserNotLoggedIn(){
     setstate(4)
@@ -146,15 +147,6 @@ export default function Login() {
           <div className="btn_login login_normal register_normal_bottom" onClick={signUp}>Registrar</div>
         </div>
       </div>
-      { 
-      emailerror != '' ? 
-      <div className="StoreTips_container">
-        <div className="StoreTips_text">
-        Su cuenta <span style={{backgroundColor: "gold", color: "black", borderLeft: "10px solid gold", borderRight: "10px solid gold"}}>{emailerror}</span> <br /> ha sido previamente iniciada con Google. Por favor, dé click en <span style={{backgroundColor: "var(--tomato)", color: "white", borderLeft: "10px solid var(--tomato)", borderRight: "10px solid var(--tomato)"}}>Iniciar sesión con google</span>
-        </div>
-      </div>
-      : null
-      }
       {errores}
       {
       cargando ? 

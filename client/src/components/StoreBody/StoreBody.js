@@ -12,7 +12,7 @@ export default function StoreBody() {
             dispatch({type:'AMOUNT_PETIPANES', payload: paq.paquetePrecio})
             dispatch({type:'ERASE_ORDER'})
         }
-        return <Link to={`/tienda/petipanes/${paq.paqueteNumero}`} onClick={changeAmount} key={index}>
+        return <Link to={`/petipanes/${paq.paqueteNumero}`} onClick={changeAmount} key={index}>
             <div className="StoreBody_petipanes_opciones">
                 {paq.paqueteNumero} petipanes a S/ {paq.paquetePrecio}
             </div>

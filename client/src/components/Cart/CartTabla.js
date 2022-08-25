@@ -1,7 +1,7 @@
 import React from 'react'
 import CarritoItem from './CarritoItem'
 import {useDispatch, useSelector} from 'react-redux'
-import {sumaMontos} from '../Cart/SumaMontos'
+import {sumaMontos} from './SumaMontos'
 export default function CartTabla() {
     const dispatch = useDispatch()
     const carrito = useSelector(store => store.cartReducer.carrito) 

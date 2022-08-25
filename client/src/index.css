@@ -28,8 +28,12 @@ code {
     monospace;
 }
 .cart_ready{
-  background-color: green;
-  color: white;
+  background-color: green !important;
+  color: white !important;
+}
+.cart_conditions{
+  background-color: var(--tomato) !important;
+  color: white !important;
 }
 input{
   font-size: 15px;
@@ -133,7 +137,6 @@ select{
   width: 348px;
   background-color: rgba(255, 0, 0, 0.658);
   border-radius:10px;
-  margin: 5px;
   color: white;
   padding:5px;
   box-sizing: border-box;
@@ -141,6 +144,7 @@ select{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 10px;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
